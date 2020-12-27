@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans 
+       http://www.springframework.org/schema/beans/spring-beans.xsd 
+       http://www.springframework.org/schema/tx 
+       http://www.springframework.org/schema/tx/spring-tx.xsd 
+       http://www.springframework.org/schema/data/jpa 
+       http://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
+
+    <!-- Scans for repositories that will be auto-registered --> 
+    <jpa:repositories base-package="com.example.jpahibernate_springdata_console.repository" />
+    
+	<!-- JPA -->
+
+    <!-- Datasource, that is currently mysql. -->
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="com.mysql.cj.jdbc.Driver" />
+		<property name="url" value="jdbc:mysql://localhost:3306/sakila?autoReconnect=true&amp;serverTimezone=UTC" />
+		<property name="username" value="root" />
+		<property name="password" value="Passw0rd123" />
+	</bean>
+
+    <!-- EntityManagerFactory -->   
+    <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+        <property name="dataSource" ref="dataSource" />
+    	<property name="packagesToScan" value="com.example.jpahibernate_springdata_console.model" />
+    	<property name="jpaVendorAdapter">
+        	<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+        		<!-- use either 'database' or 'databasePlatform' property
+        		     to indicate the type of database used.
+        		 -->       		
+        		<property name="database" value="MYSQL" />
+        		<!-- 
+        	    <property name="databasePlatform" value="org.hibernate.dialect.MySQLDialect" />
+        	     -->            	
+            	<property name="generateDdl" value="false" />
+            	<property name="showSql" value="true" />            	
+        	</bean>
+    	</property>
+    	
+		<!-- if 'jpaProperties' property is used, it will override the 'jpaVendorAdapter' property setting -->		   	
+    	<property name="jpaProperties">
+        	<props> 
+        		<!-- possible values = [none|drop|create|drop-and-create] -->
+        		<prop key="javax.persistence.schema-generation.database.action">none</prop>
+        		<!-- possible values = [none|drop|create|drop-and-create] --> 
+        		<prop key="javax.persistence.schema-generation.scripts.action">none</prop>
+        		<!-- specify the create and drop ddl file -->
+        		<prop key="javax.persistence.schema-generation.scripts.create-target">./testcreate_ddl.sql</prop>
+        		<prop key="javax.persistence.schema-generation.scripts.drop-target">./testdrop_ddl.sql</prop>
+            	
+            	<!-- Hibernate specific settings -->
+            	<prop key="hibernate.cache.use_second_level_cache">true</prop>  
+                <prop key="hibernate.cache.use_query_cache">true</prop>  
+                <prop key="hibernate.cache.provider_class">net.sf.ehcache.hibernate.SingletonEhCacheProvider</prop> 
+                <prop key="hibernate.show_sql">false</prop>  
+                <prop key="hibernate.use_sql_comments">false</prop>  
+                <prop key="hibernate.format_sql">true</prop>  
+                <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>  
+                <prop key="hibernate.temp.use_jdbc_metadata_defaults">false</prop>  
+           </props>            	
+    	</property>    	
+    </bean>
+    
+    <!-- Transactions -->    
+    <tx:annotation-driven transaction-manager="transactionManager" />
+    <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+        <property name="entityManagerFactory" ref="entityManagerFactory" />
+    </bean>
+</beans>

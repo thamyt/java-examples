@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" 
+			 xmlns="http://xmlns.jcp.org/xml/ns/persistence" 
+			 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+			 xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+	
+	<persistence-unit name="mysql-jpahibernate-springdata-console" transaction-type="RESOURCE_LOCAL">
+	    <description>Persistence for MYSQL</description>
+		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+		<exclude-unlisted-classes>false</exclude-unlisted-classes>		
+		<properties>    
+			<!-- JDBC settings -->      
+            <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
+            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/sakila?autoReconnect=true&amp;serverTimezone=UTC"/>
+            <property name="javax.persistence.jdbc.user" value="root"/>
+            <property name="javax.persistence.jdbc.password" value="Passw0rd123"/>
+            		
+			<!-- Setting to indicate whether to generate database schema
+                List of possible values and its description
+				- none (default)  : This option disables the hbm2ddl.auto tool, so Hibernate is not going to take any 
+				                    action for managing the underlying database schema.
+				- drop            : This option instructs Hibernate to drop the database schema using the entity model as
+				                    a reference for the DDL DROP statements.
+                - drop-and-create : This option instructs Hibernate to drop the database schema and recreate it afterward
+                				    using the entity model as a reference. It’s equivalent to the create hibernate.hbm2ddl.auto strategy.				                
+				- create          : For Hibernate, this option instructs Hibernate to drop the database schema and recreate it afterward
+				                    using the entity model as a reference.
+				                    For JPA, this option instructs Hibernate to generate the database schema from the entity model. 
+				                    It’s equivalent to the create-only hibernate.hbm2ddl.auto strategy.
+            -->             		
+            <property name="javax.persistence.schema-generation.database.action" value="none"/>
+            
+            <!-- Setting to indicate whether to generate database schema scripts  -->
+            <property name="javax.persistence.schema-generation.scripts.action" value="drop-and-create"/>
+            <!-- Filename of the create DDL script to generate -->
+            <property name="javax.persistence.schema-generation.scripts.create-target" value="./create_ddl.sql"/>
+            <!-- Filename of the drop DDL script to generate -->
+            <property name="javax.persistence.schema-generation.scripts.drop-target" value="./drop_ddl.sql"/>
+            
+            <!-- Type of database dialect used
+                 List of supported MySQL databases for hibernate    
+                 - org.hibernate.dialect.MySQLDialect ( Applicable for any version )
+            	 - org.hibernate.dialect.MySQLInnoDBDialect ( Applicable for any version with InnoDB)
+            	 - org.hibernate.dialect.MySQLMyISAMDialect ( Applicable for any version with MyISAM )
+            	 - org.hibernate.dialect.MySQL5Dialect ( Version 5.0 )
+            	 - org.hibernate.dialect.MySQL5InnoDBDialect ( Version 5.0 with InnoDB )
+            	 - org.hibernate.dialect.MySQL55Dialect ( Version 5.5 )
+            	 - org.hibernate.dialect.MySQL57Dialect ( Version 5.7 )
+            	 - org.hibernate.dialect.MySQL57InnoDBDialect ( Version 5.7 with InnoDB )
+            -->
+            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
+            <!-- Indicate whether to log generated SQL statements to console -->
+            <property name="hibernate.show_sql" value="true" />
+            <!-- Indicate whether to format the generated SQL statements to be more readable -->
+            <property name="hibernate.format_sql" value="false" />
+            <!-- Indicate whether to generate comments inside all generated SQL statements to hint what’s the generated SQL trying to do -->
+            <property name="hibernate.use_sql_comments" value="false" />
+        </properties>
+	</persistence-unit>
+
+	<persistence-unit name="oracledb-jpahibernate-springdata-console" transaction-type="RESOURCE_LOCAL">
+		<description>Persistence for Oracle DB</description>
+		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+		<exclude-unlisted-classes>false</exclude-unlisted-classes>		
+		<properties>    
+			<!-- JDBC settings -->      
+            <property name="javax.persistence.jdbc.driver" value="oracle.jdbc.driver.OracleDriver"/>
+            <property name="javax.persistence.jdbc.url" value="jdbc:oracle:thin:@localhost:1521:xe"/>
+            <property name="javax.persistence.jdbc.user" value="system"/>
+            <property name="javax.persistence.jdbc.password" value="Passw0rd123"/>
+            		
+			<!-- Setting to indicate whether to generate database schema
+                List of possible values and its description
+				- none (default)  : This option disables the hbm2ddl.auto tool, so Hibernate is not going to take any 
+				                    action for managing the underlying database schema.
+				- drop            : This option instructs Hibernate to drop the database schema using the entity model as
+				                    a reference for the DDL DROP statements.
+                - drop-and-create : This option instructs Hibernate to drop the database schema and recreate it afterward
+                				    using the entity model as a reference. It’s equivalent to the create hibernate.hbm2ddl.auto strategy.				                
+				- create          : For Hibernate, this option instructs Hibernate to drop the database schema and recreate it afterward
+				                    using the entity model as a reference.
+				                    For JPA, this option instructs Hibernate to generate the database schema from the entity model. 
+				                    It’s equivalent to the create-only hibernate.hbm2ddl.auto strategy.
+            -->             		
+            <property name="javax.persistence.schema-generation.database.action" value="none"/>
+            
+            <!-- Setting to indicate whether to generate database schema scripts  -->
+            <property name="javax.persistence.schema-generation.scripts.action" value="drop-and-create"/>
+            <!-- Filename of the create DDL script to generate -->
+            <property name="javax.persistence.schema-generation.scripts.create-target" value="./create_ddl.sql"/>
+            <!-- Filename of the drop DDL script to generate -->
+            <property name="javax.persistence.schema-generation.scripts.drop-target" value="./drop_ddl.sql"/>
+            
+            <!-- Type of database dialect used
+                 List of supported Oracle databases for hibernate
+                 - org.hibernate.dialect.OracleDialect ( Applicable for any version )
+            	 - org.hibernate.dialect.Oracle8iDialect ( Version 8i )
+            	 - org.hibernate.dialect.Oracle9Dialect ( Version 9 )
+            	 - org.hibernate.dialect.Oracle9iDialect ( Version 9i )
+            	 - org.hibernate.dialect.Oracle10gDialect ( Version 10g )
+            	 - org.hibernate.dialect.Oracle12cDialect ( Version 12c )
+            -->
+            
+            <property name="hibernate.dialect" value="org.hibernate.dialect.OracleDialect"/>
+            <!-- Indicate whether to log generated SQL statements to console -->
+            <property name="hibernate.show_sql" value="true" />
+            <!-- Indicate whether to format the generated SQL statements to be more readable -->
+            <property name="hibernate.format_sql" value="false" />
+            <!-- Indicate whether to generate comments inside all generated SQL statements to hint what’s the generated SQL trying to do -->
+            <property name="hibernate.use_sql_comments" value="false" />
+        </properties>
+	</persistence-unit>
+	
+	<persistence-unit name="mssql-jpahibernate-springdata-console" transaction-type="RESOURCE_LOCAL">
+		<description>Persistence for Microsoft SQL Server</description>
+		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+		<exclude-unlisted-classes>false</exclude-unlisted-classes>		
+		<properties>    
+			<!-- JDBC settings -->      
+            <property name="javax.persistence.jdbc.driver" value="com.microsoft.jdbc.sqlserver.SQLServerDriver"/>
+            <property name="javax.persistence.jdbc.url" value="jdbc:sqlserver://localhost:1433;databaseName=sakila;integratedSecurity=true;"/>
+            <property name="javax.persistence.jdbc.user" value="sa"/>
+            <property name="javax.persistence.jdbc.password" value="Passw0rd123"/>
+            		
+			<!-- Setting to indicate whether to generate database schema
+                List of possible values and its description
+				- none (default)  : This option disables the hbm2ddl.auto tool, so Hibernate is not going to take any 
+				                    action for managing the underlying database schema.
+				- drop            : This option instructs Hibernate to drop the database schema using the entity model as
+				                    a reference for the DDL DROP statements.
+                - drop-and-create : This option instructs Hibernate to drop the database schema and recreate it afterward
+                				    using the entity model as a reference. It’s equivalent to the create hibernate.hbm2ddl.auto strategy.				                
+				- create          : For Hibernate, this option instructs Hibernate to drop the database schema and recreate it afterward
+				                    using the entity model as a reference.
+				                    For JPA, this option instructs Hibernate to generate the database schema from the entity model. 
+				                    It’s equivalent to the create-only hibernate.hbm2ddl.auto strategy.
+            -->             		
+            <property name="javax.persistence.schema-generation.database.action" value="none"/>
+            
+            <!-- Setting to indicate whether to generate database schema scripts  -->
+            <property name="javax.persistence.schema-generation.scripts.action" value="drop-and-create"/>
+            <!-- Filename of the create DDL script to generate -->
+            <property name="javax.persistence.schema-generation.scripts.create-target" value="./create_ddl.sql"/>
+            <!-- Filename of the drop DDL script to generate -->
+            <property name="javax.persistence.schema-generation.scripts.drop-target" value="./drop_ddl.sql"/>
+            
+            <!-- Type of database dialect used
+                 List of supported SQLServer databases for hibernate
+                 - org.hibernate.dialect.SQLServerDialect ( Applicable for any version )
+                 - org.hibernate.dialect.SQLServer2005Dialect ( Version 2005 )
+                 - org.hibernate.dialect.SQLServer2008Dialect ( Version 2008 )
+                 - org.hibernate.dialect.SQLServer2012Dialect ( Version 2012 )
+            -->
+            <property name="hibernate.dialect" value="org.hibernate.dialect.SQLServerDialect"/>
+            <!-- Indicate whether to log generated SQL statements to console -->
+            <property name="hibernate.show_sql" value="true" />
+            <!-- Indicate whether to format the generated SQL statements to be more readable -->
+            <property name="hibernate.format_sql" value="false" />
+            <!-- Indicate whether to generate comments inside all generated SQL statements to hint what’s the generated SQL trying to do -->
+            <property name="hibernate.use_sql_comments" value="false" />
+        </properties>
+	</persistence-unit>	
+	
+	<persistence-unit name="sybase-jpahibernate-springdata-console" transaction-type="RESOURCE_LOCAL">
+		<description>Persistence for Sybase</description>
+		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+		<exclude-unlisted-classes>false</exclude-unlisted-classes>		
+		<properties>    
+			<!-- JDBC settings -->      
+            <property name="javax.persistence.jdbc.driver" value="com.sybase.jdbc2.jdbc.SybDriver"/>
+            <property name="javax.persistence.jdbc.url" value="jdbc:sybase:Tds:localhost:5000/sakila?ENABLE_SSL=true&amp;SSL_TRUST_ALL_CERTS=true"/>
+            <property name="javax.persistence.jdbc.user" value="sa"/>
+            <property name="javax.persistence.jdbc.password" value="Passw0rd123"/>
+            		
+			<!-- Setting to indicate whether to generate database schema
+                List of possible values and its description
+				- none (default)  : This option disables the hbm2ddl.auto tool, so Hibernate is not going to take any 
+				                    action for managing the underlying database schema.
+				- drop            : This option instructs Hibernate to drop the database schema using the entity model as
+				                    a reference for the DDL DROP statements.
+                - drop-and-create : This option instructs Hibernate to drop the database schema and recreate it afterward
+                				    using the entity model as a reference. It’s equivalent to the create hibernate.hbm2ddl.auto strategy.				                
+				- create          : For Hibernate, this option instructs Hibernate to drop the database schema and recreate it afterward
+				                    using the entity model as a reference.
+				                    For JPA, this option instructs Hibernate to generate the database schema from the entity model. 
+				                    It’s equivalent to the create-only hibernate.hbm2ddl.auto strategy.
+            -->             		
+            <property name="javax.persistence.schema-generation.database.action" value="none"/>
+            
+            <!-- Setting to indicate whether to generate database schema scripts  -->
+            <property name="javax.persistence.schema-generation.scripts.action" value="drop-and-create"/>
+            <!-- Filename of the create DDL script to generate -->
+            <property name="javax.persistence.schema-generation.scripts.create-target" value="./create_ddl.sql"/>
+            <!-- Filename of the drop DDL script to generate -->
+            <property name="javax.persistence.schema-generation.scripts.drop-target" value="./drop_ddl.sql"/>
+            
+            <!-- Type of database dialect used
+                 List of supported Sybase databases for hibernate
+                 - org.hibernate.dialect.SybaseDialect ( Applicable for any version )
+				 - org.hibernate.dialect.Sybase11Dialect ( Version 11 )
+				 - org.hibernate.dialect.SybaseASE15Dialect ( ASE Version 15.0 )
+				 - org.hibernate.dialect.SybaseASE157Dialect ( ASE Version 15.7 )
+				 - org.hibernate.dialect.SybaseAnywhereDialect ( Applicable for any version )
+            -->
+            <property name="hibernate.dialect" value="org.hibernate.dialect.SybaseDialect"/>
+            <!-- Indicate whether to log generated SQL statements to console -->
+            <property name="hibernate.show_sql" value="true" />
+            <!-- Indicate whether to format the generated SQL statements to be more readable -->
+            <property name="hibernate.format_sql" value="false" />
+            <!-- Indicate whether to generate comments inside all generated SQL statements to hint what’s the generated SQL trying to do -->
+            <property name="hibernate.use_sql_comments" value="false" />
+        </properties>
+	</persistence-unit>	
+		
+	<persistence-unit name="postgresql-jpahibernate-springdata-console" transaction-type="RESOURCE_LOCAL">
+		<description>Persistence for PostgreSQL</description>
+		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+		<exclude-unlisted-classes>false</exclude-unlisted-classes>		
+		<properties>    
+			<!-- JDBC settings -->      
+            <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>
+            <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost/DATABASE"/>
+            <property name="javax.persistence.jdbc.user" value="sa"/>
+            <property name="javax.persistence.jdbc.password" value="Passw0rd123"/>
+            		
+			<!-- Setting to indicate whether to generate database schema
+                List of possible values and its description
+				- none (default)  : This option disables the hbm2ddl.auto tool, so Hibernate is not going to take any 
+				                    action for managing the underlying database schema.
+				- drop            : This option instructs Hibernate to drop the database schema using the entity model as
+				                    a reference for the DDL DROP statements.
+                - drop-and-create : This option instructs Hibernate to drop the database schema and recreate it afterward
+                				    using the entity model as a reference. It’s equivalent to the create hibernate.hbm2ddl.auto strategy.				                
+				- create          : For Hibernate, this option instructs Hibernate to drop the database schema and recreate it afterward
+				                    using the entity model as a reference.
+				                    For JPA, this option instructs Hibernate to generate the database schema from the entity model. 
+				                    It’s equivalent to the create-only hibernate.hbm2ddl.auto strategy.
+            -->             		
+            <property name="javax.persistence.schema-generation.database.action" value="none"/>
+            
+            <!-- Setting to indicate whether to generate database schema scripts  -->
+            <property name="javax.persistence.schema-generation.scripts.action" value="drop-and-create"/>
+            <!-- Filename of the create DDL script to generate -->
+            <property name="javax.persistence.schema-generation.scripts.create-target" value="./create_ddl.sql"/>
+            <!-- Filename of the drop DDL script to generate -->
+            <property name="javax.persistence.schema-generation.scripts.drop-target" value="./drop_ddl.sql"/>
+            
+            <!-- Type of database dialect used
+                 List of supported PostgreSQL databases for hibernate
+                 - org.hibernate.dialect.PostgreSQLDialect ( Applicable for any version )
+				 - org.hibernate.dialect.PostgreSQL81Dialect ( Version 8.1 )
+				 - org.hibernate.dialect.PostgreSQL82Dialect ( Version 8.2 )
+				 - org.hibernate.dialect.PostgreSQL9Dialect ( Version 9.0 )
+				 - org.hibernate.dialect.PostgreSQL91Dialect ( Version 9.1 )
+				 - org.hibernate.dialect.PostgreSQL92Dialect ( Version 9.2 )
+				 - org.hibernate.dialect.PostgreSQL93Dialect ( Version 9.3 )
+				 - org.hibernate.dialect.PostgreSQL94Dialect ( Version 9.4 )
+				 - org.hibernate.dialect.PostgreSQL95Dialect ( Version 9.5 )
+            -->
+            <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect"/>
+            <!-- Indicate whether to log generated SQL statements to console -->
+            <property name="hibernate.show_sql" value="true" />
+            <!-- Indicate whether to format the generated SQL statements to be more readable -->
+            <property name="hibernate.format_sql" value="false" />
+            <!-- Indicate whether to generate comments inside all generated SQL statements to hint what’s the generated SQL trying to do -->
+            <property name="hibernate.use_sql_comments" value="false" />
+        </properties>
+	</persistence-unit>	
+	
+</persistence>
