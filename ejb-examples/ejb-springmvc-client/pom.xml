@@ -10,10 +10,10 @@
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 	<groupId>com.example</groupId>
-	<artifactId>ejb-web-client</artifactId>
+	<artifactId>ejb-springmvc-client</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
-	<name>ejb-web-client Maven Webapp</name>
+	<name>ejb-springmvc-client Maven Webapp</name>
 	<url>http://maven.apache.org</url>
 
 	<properties>
@@ -27,12 +27,33 @@
 			<artifactId>javax.servlet-api</artifactId>
 			<scope>provided</scope>
 		</dependency>
-		
+
 		<!-- ejb api -->
 		<dependency>
 			<groupId>javax.ejb</groupId>
 			<artifactId>javax.ejb-api</artifactId>
 			<scope>provided</scope>
+		</dependency>
+
+		<!-- Spring framework -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-core</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+		</dependency>
+
+		<!-- Need this to work for wildfly -->
+		<dependency>
+			<groupId>org.reactivestreams</groupId>
+			<artifactId>reactive-streams</artifactId>
+			<version>1.0.1</version>
 		</dependency>
 
 		<!-- JSTL -->
@@ -42,7 +63,7 @@
 			<version>1.2</version>
 			<scope>provided</scope>
 		</dependency>
-		
+
 		<!-- Session Bean -->
 		<dependency>
 			<groupId>com.example</groupId>
@@ -50,25 +71,15 @@
 			<version>0.0.1-SNAPSHOT</version>
 			<type>ejb</type>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<version>3.8.1</version>
 			<scope>test</scope>
-		</dependency>		
-		
-		<!-- Wildfly EJB client -->
-		<!-- 
-		<dependency>
-			<groupId>org.wildfly</groupId>
-			<artifactId>wildfly-ejb-client-bom</artifactId>
-			<version>21.0.1.Final</version>
-			<type>pom</type>
 		</dependency>
-		-->		
 	</dependencies>
 	<build>
-		<finalName>ejb-web-client</finalName>
+		<finalName>ejb-springmvc-client</finalName>
 	</build>
 </project>

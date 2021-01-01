@@ -4,7 +4,7 @@
 	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
 	id="WebApp_ID" version="4.0">
 
-	<display-name>EJB Web Client</display-name>
+	<display-name>EJB SpringMVC Client</display-name>
 
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
@@ -28,6 +28,4 @@
 		<servlet-name>SpringDispatcher</servlet-name>
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
-
-
 </web-app>

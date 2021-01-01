@@ -10,13 +10,26 @@
 <body>
 	<h1>EJB Web Client Test</h1>
 
-	<form action="currencyrate" method="get">
+	<form action="currency" method="post">
 		<table>
 			<tr>
-				<td>Currency :</td>
+				<td>Currency (From Remote EJB) :</td>
 				<td>
-					<select id="currency" name="currency">
-						<c:forEach var="item" items="${currencies}">
+					<select id="currencyRemote" name="currencyRemote">
+						<c:forEach var="item" items="${remoteCurrencies}">
+							<option value="<c:out value='${item}' />"
+								<c:if test="${param.selectValue == item})"> selected </c:if>>
+								<c:out value="${item}" />
+							</option>
+						</c:forEach>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td>Currency (From Local EJB) :</td>
+				<td>
+					<select id="currencyLocal" name="currencyLocal">
+						<c:forEach var="item" items="${localCurrencies}">
 							<option value="<c:out value='${item}' />"
 								<c:if test="${param.selectValue == item})"> selected </c:if>>
 								<c:out value="${item}" />

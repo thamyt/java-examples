@@ -6,14 +6,13 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 
+//@LocalBean
 /**
  * Session Bean implementation class CurrencyExchange
  */
 @Stateless
-@LocalBean
 public class CurrencyExchange implements CurrencyExchangeRemote, CurrencyExchangeLocal {
 
 	private HashMap<String, Float> currRates = new HashMap<String, Float>();
@@ -29,7 +28,8 @@ public class CurrencyExchange implements CurrencyExchangeRemote, CurrencyExchang
     	currRates.put("TWD", 22.45f);
     	currRates.put("RMB", 5.05f);
     	currRates.put("YEN", 79.56f);
-    	currRates.put("WON", 1000.05f); 
+    	currRates.put("WON", 1000.05f);
+    	currRates.put("AUD", 0.977f); 
     }
 
 	@Override
