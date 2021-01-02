@@ -29,6 +29,11 @@ target/
 
 
 # STS (Spring Tool Suite)
+.springBeans
+.apt_generated
+.classpath
+.factorypath
+.project
 .settings
 .sts4-cache
 
