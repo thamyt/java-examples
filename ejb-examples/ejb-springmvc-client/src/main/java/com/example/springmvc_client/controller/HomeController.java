@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.example.ejb.sessionbean.CurrencyExchangeRemote;
+import com.example.ejb.sessionbean.CurrencyRemote;
 import com.example.springmvc_client.ejb.stateless.CalculatorLocal;
 import com.example.springmvc_client.ejb.stateless.CurrencyLocal;
 
@@ -22,7 +22,7 @@ public class HomeController {
 	CurrencyLocal currencyLocal;
 	
 	@EJB
-	CurrencyExchangeRemote currencyExchangeRemote;
+	CurrencyRemote currencyExchangeRemote;
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Model model) {

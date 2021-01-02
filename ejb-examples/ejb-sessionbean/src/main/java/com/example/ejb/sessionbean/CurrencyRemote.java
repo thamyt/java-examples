@@ -6,8 +6,7 @@ import java.util.Set;
 import javax.ejb.Remote;
 
 @Remote
-public interface CurrencyExchangeRemote {
+public interface CurrencyRemote {
 	List<String> getCurrencyList();
-	Set<String> getCurrencySet();
     float getcurrencyRate(String currencyName);
 }

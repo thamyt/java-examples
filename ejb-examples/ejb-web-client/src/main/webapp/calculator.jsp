@@ -12,17 +12,17 @@
 	<form action="CalculatorServlet" method="post">
 		<table>
 			<tr>
-				<td><input id="value1" name="value1" /></td>
+				<td><input id="value1" name="value1" value="${value1}" /></td>
 				<td>
 					<select id="operand" name="operand">
-						<option value="Select the operand" selected>Select the operand</option>
-						<option value="+">+</option>
-						<option value="-">-</option>
-						<option value="*">*</option>
-						<option value="/">/</option>
+						<option value="???" <c:if test="${operand == '???'}"> selected </c:if>>Select the operand</option>
+						<option value="+" <c:if test="${operand == '+'}"> selected </c:if>>+</option>
+						<option value="-" <c:if test="${operand == '-'}"> selected </c:if>>-</option>
+						<option value="*" <c:if test="${operand == '*'}"> selected </c:if>>*</option>
+						<option value="/" <c:if test="${operand == '/'}"> selected </c:if>>/</option>
 					</select>
 				</td>
-				<td><input id="value2" name="value2" /></td>
+				<td><input id="value2" name="value2" value="${value2}" /></td>
 			</tr>
 			<c:if test="${not empty result}" >
 				<tr>

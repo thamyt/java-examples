@@ -1,7 +1,6 @@
-package com.example.ejb.sessionbean;
+package com.example.webclient.ejb.stateless;
 
 import java.util.List;
-import java.util.Set;
 
 import javax.ejb.Local;
 

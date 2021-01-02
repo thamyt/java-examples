@@ -1,19 +1,15 @@
-package com.example.ejb.sessionbean;
+package com.example.webclient.ejb.stateless;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
+import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 
-//@LocalBean
-/**
- * Session Bean implementation class CurrencyExchange
- */
-@Stateless
-public class CurrencyBean implements CurrencyRemote, CurrencyLocal {
+@Stateless(name="CurrencyBean2")
+@LocalBean
+public class CurrencyBean implements CurrencyLocal {
 
 	private HashMap<String, Float> currRates = new HashMap<String, Float>();
 	
@@ -31,6 +27,16 @@ public class CurrencyBean implements CurrencyRemote, CurrencyLocal {
 		currRates.put(String.format("WON - (%s)", CurrencyBean.class.getName()), 1000.05f);
 		currRates.put(String.format("AUD - (%s)", CurrencyBean.class.getName()), 0.977f);
     }
+    
+	@Override
+	public List<String> getCurrencyList() {
+		List<String> result = new ArrayList<String>();
+		
+		for(String s : currRates.keySet()) {
+			result.add(s);
+		}
+		return result;
+	}
 
 	@Override
 	public float getcurrencyRate(String currencyName) {
@@ -41,13 +47,4 @@ public class CurrencyBean implements CurrencyRemote, CurrencyLocal {
 		return rate;
 	}
 
-	@Override
-	public List<String> getCurrencyList() {
-		List<String> result = new ArrayList<String>();
-		
-		for(String s : currRates.keySet()) {
-			result.add(s);
-		}
-		return result;
-	}
 }

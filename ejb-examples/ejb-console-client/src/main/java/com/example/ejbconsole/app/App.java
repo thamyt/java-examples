@@ -3,13 +3,12 @@ package com.example.ejbconsole.app;
 import java.util.Hashtable;
 import java.util.List;
 import java.util.Properties;
-import java.util.Set;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 
-import com.example.ejb.sessionbean.CurrencyExchangeRemote;
+import com.example.ejb.sessionbean.CurrencyRemote;
 
 /**
  * Hello world!
@@ -24,19 +23,11 @@ public class App
         System.out.println( "Start..." );
         
         try {
-        	CurrencyExchangeRemote currEx = lookupEJBCurrencyExchange();
+        	CurrencyRemote currEx = lookupEJBCurrencyExchange();
 			
 			System.out.println("Getting supported currency using list...");
 			List<String> currencies = currEx.getCurrencyList();
 			for(String curr : currencies) {
-				System.out.format("- %s\n", curr);
-			}
-			
-			System.out.println("\n\n");
-			
-			System.out.println("Getting supported currency using set...");
-			Set<String> currencies2 = currEx.getCurrencySet();
-			for(String curr : currencies2) {
 				System.out.format("- %s\n", curr);
 			}
 			
@@ -56,7 +47,7 @@ public class App
     }
     
     
-    private static CurrencyExchangeRemote lookupEJBCurrencyExchange() throws NamingException {
+    private static CurrencyRemote lookupEJBCurrencyExchange() throws NamingException {
     	System.out.println("Inside lookupEJBCurrencyExchange...");
     	
     	int option = 4;
@@ -94,8 +85,8 @@ public class App
     	Context  context = new InitialContext();
     	
         
-        return (CurrencyExchangeRemote) context.lookup("ejb:/ejb-sessionbean-0.0.1-SNAPSHOT/CurrencyExchange!"
-				+ CurrencyExchangeRemote.class.getName());
+        return (CurrencyRemote) context.lookup("ejb:/ejb-sessionbean-0.0.1-SNAPSHOT/CurrencyExchange!"
+				+ CurrencyRemote.class.getName());
         /*
         return (CurrencyExchangeRemote) context.lookup("ejb-sessionbean-0.0.1-SNAPSHOT/CurrencyExchange!"
 				+ CurrencyExchangeRemote.class.getName());
@@ -104,7 +95,7 @@ public class App
     
     
     
-    private static CurrencyExchangeRemote lookupRemoteStatelessCurrencyExchange() throws NamingException {
+    private static CurrencyRemote lookupRemoteStatelessCurrencyExchange() throws NamingException {
         final Hashtable<String, String> jndiProperties = new Hashtable<>();
         jndiProperties.put(Context.INITIAL_CONTEXT_FACTORY, "org.wildfly.naming.client.WildFlyInitialContextFactory");
         if(Boolean.getBoolean(HTTP)) {
@@ -136,7 +127,7 @@ public class App
 
         // let's do the lookup
         // ejb:/ejb-sessionbean-0.0.1-SNAPSHOT/CurrencyExchange!com.example.ejb.sessionbean.CurrencyExchangeRemote
-        return (CurrencyExchangeRemote) context.lookup("ejb:/ejb-sessionbean-0.0.1-SNAPSHOT/CurrencyExchange!"
-        										+ CurrencyExchangeRemote.class.getName());
+        return (CurrencyRemote) context.lookup("ejb:/ejb-sessionbean-0.0.1-SNAPSHOT/CurrencyExchange!"
+        										+ CurrencyRemote.class.getName());
     }
 }

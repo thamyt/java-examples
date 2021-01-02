@@ -49,6 +49,11 @@ public class CalculatorServlet extends HttpServlet {
 		String value2 = request.getParameter("value2");
 		String operand = request.getParameter("operand");
 		
+		// set the attribute for the submitted parameter to prevent values cleared on page load 
+		request.setAttribute("value1", value1);
+		request.setAttribute("value2", value2);
+		request.setAttribute("operand", operand);
+		
 		if( value1.isEmpty() || value2.isEmpty()) {
 			request.setAttribute("error", "Please enter the value to compute!");
 		}
@@ -66,7 +71,7 @@ public class CalculatorServlet extends HttpServlet {
 					case "-":	result = calculator.substract(a, b); break;
 					case "*":	result = calculator.multiply(a, b); break;
 					case "/":	result = calculator.divide(a, b); break;				
-				}
+				}			
 				
 				request.setAttribute("result", result);
 			}
