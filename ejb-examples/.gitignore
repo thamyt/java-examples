@@ -29,6 +29,10 @@ bin/
 target/
 
 
+# Tern plugin
+.tern-project
+
+
 # STS (Spring Tool Suite)
 .springBeans
 .apt_generated
