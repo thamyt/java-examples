@@ -1,7 +1,49 @@
-*.class
-*.war
-*.jar
-*.ear
-target/
-.settings
+### Eclipse ###
+HELP.md
+/target/
+!.mvn/wrapper/maven-wrapper.jar
+
+
+# JDT-specific (Eclipse Java Development Tools)
+.classpath
+
+
+### IntelliJ IDEA ###
 .idea
+*.iws
+*.iml
+*.ipr
+
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+/build/
+
+
+### Maven ###
+target/
+
+
+# STS (Spring Tool Suite)
+.settings
+.sts4-cache
+
+
+# Package Files #
+*.jar
+*.war
+*.nar
+*.ear
+*.zip
+*.tar.gz
+*.rar
+*.gz
+
+
+### Java ###
+# Compiled class file
+*.class
