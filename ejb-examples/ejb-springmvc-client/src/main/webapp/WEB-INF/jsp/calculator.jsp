@@ -7,6 +7,8 @@
 <title>Calculator</title>
 </head>
 <body>
+	<c:set var="context" value="<%=request.getContextPath()%>" />
+
 	<h1>Calculator - Test local EJB stateless bean</h1>
 	
 	<form action="calculator" method="post">
@@ -36,7 +38,7 @@
 			</c:if>
 			<tr>
 				<td>
-					<a href="./"><input type="button" value="Home" /></a>
+					<a href="${context}"><input type="button" value="Home" /></a>
 					<input type="submit"  value="Compute" />
 				</td>
 			</tr>

@@ -8,6 +8,8 @@
 <title>EJB Web Client</title>
 </head>
 <body>
+	<c:set var="context" value="<%=request.getContextPath()%>" />
+
 	<h1>EJB Web Client Test</h1>
 
 	<form action="currency" method="post">
@@ -15,7 +17,7 @@
 			<tr>
 				<td>Currency (From Remote EJB) :</td>
 				<td>
-					<select id="currencyRemote" name="currencyRemote">
+					<select id="remoteCurrency" name="remoteCurrency">
 						<c:forEach var="item" items="${remoteCurrencies}">
 							<option value="<c:out value='${item}' />"
 								<c:if test="${param.selectValue == item})"> selected </c:if>>
@@ -28,7 +30,7 @@
 			<tr>
 				<td>Currency (From Local EJB) :</td>
 				<td>
-					<select id="currencyLocal" name="currencyLocal">
+					<select id="localCurrency" name="localCurrency">
 						<c:forEach var="item" items="${localCurrencies}">
 							<option value="<c:out value='${item}' />"
 								<c:if test="${param.selectValue == item})"> selected </c:if>>
@@ -40,6 +42,7 @@
 			</tr>
 			<tr>
 				<td>
+					<a href="${context}"><input type="button" value="Home" /></a>
 					<input type="submit"  value="Get Currency Rate"></input>
 				</td>
 			</tr>

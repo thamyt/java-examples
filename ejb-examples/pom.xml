@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.example</groupId>
 	<artifactId>ejb-examples</artifactId>
@@ -15,10 +17,13 @@
 		<maven-compiler-plugin.version>3.1</maven-compiler-plugin.version>
 		<maven-ejb-plugin.version>3.0.1</maven-ejb-plugin.version>
 		<javax.ejb-api.version>3.2.2</javax.ejb-api.version>
-		
 
-		<!-- spring -->
+
+		<!-- spring --> 
 		<spring.version>5.2.12.RELEASE</spring.version>
+		<spring.version>4.3.30.RELEASE</spring.version>
+		
+		<jackson.version>2.9.4</jackson.version>
 	</properties>
 
 	<dependencyManagement>
@@ -29,14 +34,14 @@
 				<artifactId>javax.servlet-api</artifactId>
 				<version>4.0.1</version>
 			</dependency>
-			
+
 			<!-- ejb api -->
 			<dependency>
-                <groupId>javax.ejb</groupId>
-                <artifactId>javax.ejb-api</artifactId>
-                <version>${javax.ejb-api.version}</version>
-            </dependency>
-				
+				<groupId>javax.ejb</groupId>
+				<artifactId>javax.ejb-api</artifactId>
+				<version>${javax.ejb-api.version}</version>
+			</dependency>
+
 			<!-- Spring framework -->
 			<dependency>
 				<groupId>org.springframework</groupId>
@@ -52,6 +57,13 @@
 				<groupId>org.springframework</groupId>
 				<artifactId>spring-webmvc</artifactId>
 				<version>${spring.version}</version>
+			</dependency>
+			
+			<!-- Jackson - Json library -->
+			<dependency>
+    			<groupId>com.fasterxml.jackson.core</groupId>
+    			<artifactId>jackson-databind</artifactId>
+    			<version>${jackson.version}</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
@@ -90,8 +102,8 @@
 		<module>ejb-sessionbean</module>
 		<module>ejb-console-client</module>
 		<module>ejb-web-client</module>
-    <module>ejb-springmvc-client</module>
-  </modules>
+		<module>ejb-springmvc-client</module>
+	</modules>
 
 	<profiles>
 	</profiles>

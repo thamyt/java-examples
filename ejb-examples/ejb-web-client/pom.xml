@@ -43,12 +43,12 @@
 			<scope>provided</scope>
 		</dependency>
 		
-		<!-- Session Bean -->
+		<!-- Session Bean (ejb client) -->
 		<dependency>
 			<groupId>com.example</groupId>
 			<artifactId>ejb-sessionbean</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
-			<type>ejb</type>
+			<type>ejb-client</type>
 		</dependency>
 		
 		<dependency>

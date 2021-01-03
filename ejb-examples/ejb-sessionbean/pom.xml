@@ -43,7 +43,7 @@
 					<generateClient>true</generateClient>
 					<clientExcludes>
 						<clientExclude>**/META-INF/*.xml</clientExclude>
-						<clientExclude>**/ejb/*EJB.class</clientExclude>
+						<clientExclude>**/ejb/**/*Bean.class</clientExclude>
 					</clientExcludes>
 				</configuration>
 			</plugin>

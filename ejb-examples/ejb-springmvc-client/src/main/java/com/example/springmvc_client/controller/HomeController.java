@@ -109,10 +109,15 @@ public class HomeController {
 	
 	@RequestMapping(value = "/currency", method = RequestMethod.POST)
 	public String currency(Model model,
-							 @RequestParam String value1, 
-							 @RequestParam String value2,
-							 @RequestParam String operand) {
+						   @RequestParam String localCurrency, 
+						   @RequestParam String remoteCurrency) {
 		
-		return "currency";
+		System.out.println("localCurrency : " + localCurrency);
+		System.out.println("remoteCurrency : " + remoteCurrency);
+		
+		model.addAttribute("localRate", currencyLocal.getCurrencyRate(localCurrency));
+		model.addAttribute("remoteRate", currencyLocal.getCurrencyRate(remoteCurrency));
+		
+		return currency(model);
 	}
 }

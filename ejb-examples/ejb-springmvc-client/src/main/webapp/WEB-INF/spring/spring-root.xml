@@ -30,11 +30,11 @@
 				  value="com.example.springmvc_client.ejb.stateless.CurrencyLocal" />
 	</bean>
 	
-	<bean id="currencyExchangeRemote"
+	<bean id="currencyRemote"
 		class="org.springframework.ejb.access.SimpleRemoteStatelessSessionProxyFactoryBean">
-		<property name="jndiName" value="ejb:/ejb-sessionbean-0.0.1-SNAPSHOT/CurrencyExchange!com.example.ejb.sessionbean.CurrencyExchangeRemote" />
+		<property name="jndiName" value="java:global/ejb-sessionbean-0.0.1-SNAPSHOT/CurrencyBean!com.example.ejb.sessionbean.CurrencyRemote" />
 		<property name="businessInterface"
-			value="com.example.ejb.sessionbean.CurrencyExchangeRemote" />
+			value="com.example.ejb.sessionbean.CurrencyRemote" />
 	</bean>
 
 	
@@ -47,9 +47,9 @@
 					jndi-name="java:global/ejb-web-client/CurrencyBean!com.example.springmvc_client.ejb.stateless.CurrencyLocal"
       				business-interface="com.example.springmvc_client.ejb.stateless.CurrencyLocal"/>      				
 	
-	<jee:remote-slsb id="currencyExchangeRemote"
-					 jndi-name="ejb:/ejb-sessionbean-0.0.1-SNAPSHOT/CurrencyExchange!com.example.ejb.sessionbean.CurrencyExchangeRemote"
-           			 business-interface="com.example.ejb.sessionbean.CurrencyExchangeRemote"
+	<jee:remote-slsb id="currencyRemote"
+					 jndi-name="ejb:/ejb-sessionbean-0.0.1-SNAPSHOT/CurrencyBean!com.example.ejb.sessionbean.CurrencyRemote"
+           			 business-interface="com.example.ejb.sessionbean.CurrencyRemote"
            	         cache-home="false" 
            	         lookup-home-on-startup="false"
                      refresh-home-on-connect-failure="true" />

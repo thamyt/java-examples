@@ -48,13 +48,24 @@
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-webmvc</artifactId>
 		</dependency>
+		
+		<!-- Glassfish 5 failed to deploy without this dependency due to spring-webmvc required version is not in its built-in version 
+		     Wildfly 21 works as it has the compatible built version  -->
+		<!-- 
+		<dependency>
+    		<groupId>com.fasterxml.jackson.core</groupId>
+    		<artifactId>jackson-databind</artifactId>
+   		</dependency>
+   		 -->
 
 		<!-- Need this to work for wildfly -->
+		<!-- 
 		<dependency>
 			<groupId>org.reactivestreams</groupId>
 			<artifactId>reactive-streams</artifactId>
 			<version>1.0.1</version>
 		</dependency>
+		 -->
 
 		<!-- JSTL -->
 		<dependency>
@@ -64,12 +75,12 @@
 			<scope>provided</scope>
 		</dependency>
 
-		<!-- Session Bean -->
+		<!-- Session Bean (ejb client) -->
 		<dependency>
 			<groupId>com.example</groupId>
 			<artifactId>ejb-sessionbean</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
-			<type>ejb</type>
+			<type>ejb-client</type>
 		</dependency>
 
 		<dependency>

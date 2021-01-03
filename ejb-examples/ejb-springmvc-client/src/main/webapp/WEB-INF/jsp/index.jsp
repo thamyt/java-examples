@@ -8,12 +8,14 @@
 <title>EJB Web Client</title>
 </head>
 <body>
+	<c:set var="context" value="<%=request.getContextPath()%>" />
+
 	<h1>EJB SpringMVC Client</h1>
 
 	<h2>Options</h2>
 	<ol>
-		<li><a href="./calculator">Calculator - Test local EJB stateless bean</a></li>
-		<li><a href="./currency">Currency - Test local/remote EJB stateless bean</a></li>
+		<li><a href="${context}/calculator">Calculator - Test local EJB stateless bean</a></li>
+		<li><a href="${context}/currency">Currency - Test local/remote EJB stateless bean</a></li>
 	</ol>
 
 </body>
