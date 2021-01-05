@@ -82,6 +82,14 @@
 			<version>0.0.1-SNAPSHOT</version>
 			<type>ejb-client</type>
 		</dependency>
+		 
+		<!-- wildfly ejb client -->
+		<dependency>
+			<groupId>org.wildfly</groupId>
+			<artifactId>wildfly-ejb-client-bom</artifactId>
+			<version>20.0.1.Final</version>
+			<type>pom</type>
+		</dependency>
 
 		<dependency>
 			<groupId>junit</groupId>

@@ -10,7 +10,7 @@
 <body>
 	<c:set var="context" value="<%=request.getContextPath()%>" />
 
-	<h1>EJB Web Client Test</h1>
+	<h1>Currency - Test local/remote EJB stateless bean</h1>
 
 	<form action="currency" method="post">
 		<table>
@@ -18,26 +18,48 @@
 				<td>Currency (From Remote EJB) :</td>
 				<td>
 					<select id="remoteCurrency" name="remoteCurrency">
+						<option value="???" <c:if test="${remoteCurrency == '???'}"> selected </c:if>>Select the currency</option>
 						<c:forEach var="item" items="${remoteCurrencies}">
 							<option value="<c:out value='${item}' />"
-								<c:if test="${param.selectValue == item})"> selected </c:if>>
+								<c:if test="${remoteCurrency == item}"> selected </c:if>>
 								<c:out value="${item}" />
 							</option>
 						</c:forEach>
 					</select>
+				</td>
+				<td>
+					<c:choose>
+    					<c:when test="${not empty remoteRate}">
+        					Rate: <c:out value="${remoteRate}"/>
+    					</c:when>    
+    					<c:otherwise>
+        				    Rate: ---
+    				    </c:otherwise>
+					</c:choose>
 				</td>
 			</tr>
 			<tr>
 				<td>Currency (From Local EJB) :</td>
 				<td>
 					<select id="localCurrency" name="localCurrency">
+						<option value="???" <c:if test="${localCurrency == '???'}"> selected </c:if>>Select the currency</option>
 						<c:forEach var="item" items="${localCurrencies}">
 							<option value="<c:out value='${item}' />"
-								<c:if test="${param.selectValue == item})"> selected </c:if>>
+								<c:if test="${localCurrency == item}"> selected </c:if>>
 								<c:out value="${item}" />
 							</option>
 						</c:forEach>
 					</select>
+				</td>
+				<td>
+					<c:choose>
+    					<c:when test="${not empty localRate}">
+        					Rate: <c:out value="${localRate}"/>
+    					</c:when>    
+    					<c:otherwise>
+        				    Rate: ---
+    				    </c:otherwise>
+					</c:choose>
 				</td>
 			</tr>
 			<tr>

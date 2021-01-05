@@ -70,8 +70,8 @@ public class CurrencyServlet extends HttpServlet {
 		}
 		else {
 			// compute the remote currency rate
-			request.setAttribute("localRate", currencyLocal.getcurrencyRate(localCurrency));
-			request.setAttribute("remoteRate", currencyRemote.getcurrencyRate(remoteCurrency));
+			request.setAttribute("localRate", currencyLocal.getCurrencyRate(localCurrency));
+			request.setAttribute("remoteRate", currencyRemote.getCurrencyRate(remoteCurrency));
 		}
 		
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher("/currency.jsp");

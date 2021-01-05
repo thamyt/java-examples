@@ -8,5 +8,5 @@ import javax.ejb.Remote;
 @Remote
 public interface CurrencyRemote {
 	List<String> getCurrencyList();
-    float getcurrencyRate(String currencyName);
+    float getCurrencyRate(String currencyName);
 }

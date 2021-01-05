@@ -20,7 +20,9 @@
 
 
 		<!-- spring --> 
+		<!--
 		<spring.version>5.2.12.RELEASE</spring.version>
+		 --> 
 		<spring.version>4.3.30.RELEASE</spring.version>
 		
 		<jackson.version>2.9.4</jackson.version>

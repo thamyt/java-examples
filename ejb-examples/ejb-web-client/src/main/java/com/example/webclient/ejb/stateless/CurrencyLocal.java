@@ -7,5 +7,5 @@ import javax.ejb.Local;
 @Local
 public interface CurrencyLocal {
 	List<String> getCurrencyList();
-    float getcurrencyRate(String currencyName);
+    float getCurrencyRate(String currencyName);
 }

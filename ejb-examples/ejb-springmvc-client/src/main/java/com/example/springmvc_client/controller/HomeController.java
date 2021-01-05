@@ -22,7 +22,7 @@ public class HomeController {
 	CurrencyLocal currencyLocal;
 	
 	@EJB
-	CurrencyRemote currencyExchangeRemote;
+	CurrencyRemote currencyRemote;
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Model model) {
@@ -63,7 +63,7 @@ public class HomeController {
 	public String currency(Model model) {
 		
 		model.addAttribute("localCurrencies", currencyLocal.getCurrencyList());
-		model.addAttribute("remoteCurrencies", currencyExchangeRemote.getCurrencyList());
+		model.addAttribute("remoteCurrencies", currencyRemote.getCurrencyList());
 		
 		return "currency";
 	}
@@ -115,8 +115,12 @@ public class HomeController {
 		System.out.println("localCurrency : " + localCurrency);
 		System.out.println("remoteCurrency : " + remoteCurrency);
 		
+		// set the attribute for the submitted parameter to prevent values cleared on page load 
+		model.addAttribute("localCurrency", localCurrency);
+		model.addAttribute("remoteCurrency", remoteCurrency);
+				
 		model.addAttribute("localRate", currencyLocal.getCurrencyRate(localCurrency));
-		model.addAttribute("remoteRate", currencyLocal.getCurrencyRate(remoteCurrency));
+		model.addAttribute("remoteRate", currencyRemote.getCurrencyRate(remoteCurrency));
 		
 		return currency(model);
 	}

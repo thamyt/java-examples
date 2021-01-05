@@ -33,10 +33,10 @@ public class App
 			
 			System.out.println("\n\n");
 			
-			System.out.format("SGD currency rate : %f\n", currEx.getcurrencyRate("SGD"));
-			System.out.format("MYR currency rate : %f\n", currEx.getcurrencyRate("MYR"));
-			System.out.format("USD currency rate : %f\n", currEx.getcurrencyRate("USD"));
-			System.out.format("RMB currency rate : %f\n", currEx.getcurrencyRate("RMB"));
+			System.out.format("SGD currency rate : %f\n", currEx.getCurrencyRate("SGD"));
+			System.out.format("MYR currency rate : %f\n", currEx.getCurrencyRate("MYR"));
+			System.out.format("USD currency rate : %f\n", currEx.getCurrencyRate("USD"));
+			System.out.format("RMB currency rate : %f\n", currEx.getCurrencyRate("RMB"));
 			
 		} catch (NamingException e) {
 			// TODO Auto-generated catch block
