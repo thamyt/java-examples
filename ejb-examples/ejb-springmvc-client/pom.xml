@@ -80,7 +80,7 @@
 			<groupId>com.example</groupId>
 			<artifactId>ejb-sessionbean</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
-			<type>ejb-client</type>
+			<type>ejb</type>
 		</dependency>
 		 
 		<!-- wildfly ejb client -->

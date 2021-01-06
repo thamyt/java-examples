@@ -7,7 +7,7 @@ import java.util.List;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 
-@Stateless
+@Stateless (name = "CurrencyBean2")
 @LocalBean
 public class CurrencyBean implements CurrencyLocal {
 

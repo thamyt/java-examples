@@ -2,10 +2,9 @@ package com.example.ejb.sessionbean;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
+import javax.ejb.Schedule;
 import javax.ejb.Stateless;
 
 //@LocalBean
@@ -51,5 +50,11 @@ public class CurrencyBean implements CurrencyRemote, CurrencyLocal {
 			result.add(s);
 		}
 		return result;
+	}
+
+	@Override
+	@Schedule(minute="*", hour="*")
+	public void syncData() {
+		System.out.println("syncData ...");
 	}
 }
