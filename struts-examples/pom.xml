@@ -13,6 +13,7 @@
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
 		<struts2.version>2.3.37</struts2.version>
+		<struts2-dojo-plugin.version>2.3.37</struts2-dojo-plugin.version>
 		<log4j2.version>2.10.0</log4j2.version>
 	</properties>
 
@@ -30,6 +31,13 @@
 				<groupId>org.apache.struts</groupId>
 				<artifactId>struts2-core</artifactId>
 				<version>${struts2.version}</version>
+			</dependency>
+			
+			<!-- struts 2 dojo plugin -->
+			<dependency>
+				<groupId>org.apache.struts</groupId>
+   				<artifactId>struts2-dojo-plugin</artifactId>
+				<version>${struts2-dojo-plugin.version}</version>
 			</dependency>
 
 			<!-- log4j -->

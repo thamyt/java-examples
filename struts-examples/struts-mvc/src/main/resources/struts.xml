@@ -4,13 +4,30 @@
     "http://struts.apache.org/dtds/struts-2.5.dtd">
 
 <struts>
-
+    <constant name="struts.custom.i18n.resources" value="global" />
+    <constant name="struts.multipart.parser" value="jakarta-stream" />
 	<constant name="struts.devMode" value="true" />
 
 	<package name="basicstruts2" extends="struts-default">
 		<action name="index">
 			<result>/index.jsp</result>
 		</action>
+		<action name="calculator" 
+				class="com.example.strutsmvc.CalculatorAction" 
+				method="execute" >
+            <result name="success">/calculator.jsp</result>
+        </action>
+        <action name="formsubmit-display"
+        	    class="com.example.strutsmvc.FormSubmitAction"
+        	    method="display" >
+            <result name="none">/WEB-INF/jsp/formsubmit.jsp</result>
+        </action>
+        <action name="formsubmit-submit" 
+				class="com.example.strutsmvc.FormSubmitAction"
+				method="submit" >
+            <result name="input">/WEB-INF/jsp/formsubmit.jsp</result>
+            <result name="success">/WEB-INF/jsp/formsubmit-response.jsp</result>
+        </action>
 	</package>
 
 </struts>
