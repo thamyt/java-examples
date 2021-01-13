@@ -25,9 +25,8 @@
         		  headerValue="--- Please Select ---"
         	 	  key="person.occupation" 
         	 	  list="occupationList" />
-        <s:label for="person.photo" value="Photo"/>
-        <s:file key="person.photo" name="myFile" accept="image/jpg,image/png" />
-        <s:textarea key="email.remark" name="remark" />
+        <s:file key="person.photo" name="myFile" accept="image/*" />
+        <s:textarea key="person.remarks" />
         <s:token />
         <s:submit key="submit" />
 	</s:form>	

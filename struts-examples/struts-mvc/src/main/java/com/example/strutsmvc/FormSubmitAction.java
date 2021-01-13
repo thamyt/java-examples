@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.commons.io.FileUtils;
 
@@ -35,26 +36,47 @@ public class FormSubmitAction extends ActionSupport {
 	}
 
     public String submit() throws Exception {
-    	System.out.println("firstname : " + person.getFirstName());
-    	System.out.println("lastname : " + person.getLastName());
-    	System.out.println("DOB : " + person.getDob());
+    	System.out.println("Inside FormSubmitAction...");
     	
-    	destPath = "D:/";
+    	// check if there is any error
+    	for(String s : this.getErrorMessages()) {
+    		System.out.println("Error Message = " + s);
+    	}
     	
-		try {
-			System.out.println("Src File name: " + myFile);
-			System.out.println("Dst File name: " + myFileFileName);
-			System.out.println("File Content Type: " + myFileContentType);
-			
-			if( myFile != null ) {	    	 
-				File destFile  = new File(destPath, myFileFileName);
-				FileUtils.copyFile(myFile, destFile); 
-			}
-		} 
-		catch(IOException e) {
-			e.printStackTrace();
-		    return ERROR;
-		}
+    	for(String s : this.getActionErrors()) {
+    		System.out.println("Action Error = " + s);
+    	}
+    	
+    	for(Map.Entry<String,List<String>> entry : getFieldErrors().entrySet()) {
+    		System.out.println("Field name = " + entry.getKey());
+    		for(String s : entry.getValue()) {
+    			System.out.println("---> Error = " + entry);	
+    		}
+    	}
+    	
+    	if( person != null ) {
+    		System.out.println("firstname : " + person.getFirstName());
+        	System.out.println("lastname : " + person.getLastName());
+        	System.out.println("DOB : " + person.getDob());
+        	
+        	destPath = "D:/";
+        	
+    		try {
+    			System.out.println("Src File name: " + myFile);
+    			System.out.println("Dst File name: " + myFileFileName);
+    			System.out.println("File Content Type: " + myFileContentType);
+    			
+    			if( myFile != null ) {	    	 
+    				File destFile  = new File(destPath, myFileFileName);
+    				FileUtils.copyFile(myFile, destFile); 
+    				person.setPhoto(destFile.getName());
+    			}
+    		} 
+    		catch(IOException e) {
+    			e.printStackTrace();
+    		    return ERROR;
+    		}
+    	}
 		
 		return SUCCESS;
 	}

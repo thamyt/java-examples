@@ -4,9 +4,13 @@
     "http://struts.apache.org/dtds/struts-2.5.dtd">
 
 <struts>
-    <constant name="struts.custom.i18n.resources" value="global" />
-    <constant name="struts.multipart.parser" value="jakarta-stream" />
 	<constant name="struts.devMode" value="true" />
+    <constant name="struts.custom.i18n.resources" value="global" />
+    
+    <!-- Use this parser for large file handling for Struts version 2.3.18 onwards -->
+    <constant name="struts.multipart.parser" value="jakarta-stream" />
+	<!-- maximum size per request -->
+	<constant name="struts.multipart.maxSize" value="4194304" />
 
 	<package name="basicstruts2" extends="struts-default">
 		<action name="index">
@@ -24,7 +28,8 @@
         </action>
         <action name="formsubmit-submit" 
 				class="com.example.strutsmvc.FormSubmitAction"
-				method="submit" >
+				method="submit" >			
+			
             <result name="input">/WEB-INF/jsp/formsubmit.jsp</result>
             <result name="success">/WEB-INF/jsp/formsubmit-response.jsp</result>
         </action>
