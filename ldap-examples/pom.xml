@@ -14,8 +14,9 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
-		<ldap-client-api.version>2.0.1</ldap-client-api.version>
+		<org.apache.directory.api.version>2.0.0</org.apache.directory.api.version>
 		<commons-codec.version>1.15</commons-codec.version>
+		<bcpkix-jdk15on.version>1.68</bcpkix-jdk15on.version>
 	</properties>
 
 	<dependencyManagement>
@@ -23,7 +24,19 @@
 			<dependency>
 				<groupId>org.apache.directory.api</groupId>
 				<artifactId>api-ldap-client-api</artifactId>
-				<version>${ldap-client-api.version}</version>
+				<version>${org.apache.directory.api.version}</version>
+			</dependency>
+			
+			<dependency>
+    			<groupId>org.apache.directory.api</groupId>
+    			<artifactId>api-ldap-model</artifactId>
+    			<version>${org.apache.directory.api.version}</version>
+			</dependency>
+			
+			<dependency>
+    			<groupId>org.bouncycastle</groupId>
+    			<artifactId>bcpkix-jdk15on</artifactId>
+    			<version>${bcpkix-jdk15on.version}</version>
 			</dependency>
 			
 			<dependency>

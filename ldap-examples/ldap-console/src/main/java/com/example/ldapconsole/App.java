@@ -1,12 +1,23 @@
 package com.example.ldapconsole;
 
 import java.nio.charset.StandardCharsets;
+import java.security.Key;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.security.Provider;
 import java.security.SecureRandom;
+import java.security.Security;
+import java.security.spec.InvalidKeySpecException;
+import java.security.spec.KeySpec;
 import java.util.Base64;
+import java.util.Enumeration;
+import java.util.Locale;
 import java.util.Properties;
 
+import javax.crypto.Cipher;
+import javax.crypto.NoSuchPaddingException;
+import javax.crypto.SecretKeyFactory;
+import javax.crypto.spec.PBEKeySpec;
 import javax.naming.Context;
 import javax.naming.NamingEnumeration;
 import javax.naming.NamingException;
@@ -21,6 +32,9 @@ import javax.naming.ldap.LdapContext;
 
 import org.apache.commons.codec.binary.Hex;
 import org.apache.commons.codec.digest.DigestUtils;
+import org.bouncycastle.crypto.PBEParametersGenerator;
+import org.bouncycastle.crypto.generators.PKCS5S2ParametersGenerator;
+import org.bouncycastle.crypto.params.KeyParameter;
 
 /**
  * Hello world!
@@ -49,7 +63,7 @@ public class App
 		  SSHA_512,
 		  MD5,
 		  SMD5,
-		  PKCS5C2,
+		  PKCS5S2,
 		  CRYPT,
 		  CRYPT_MD5,
 		  CRYPT_SHA_256,
@@ -63,17 +77,17 @@ public class App
         System.out.println("=================");
         
         App app = new App();
-        
-        //app.test();
+                
+		//app.test4();		
         
         // Test Browser Ldap users
         app.browseLdapUsers();
         
         // Test authenticate ldap users
-        app.authenticateLdapUser(USERS_DOMAIN_DN, "user04", "hello@World");
+        app.authenticateLdapUser(USERS_DOMAIN_DN, "user06", "hello@World");
         
         // Test authenticate ldap users
-        //app.changeLdapUserPasswordBySysAdmin(USERS_DOMAIN_DN, "user04", "P@ssw0rd123", "hello@World");
+        //app.changeLdapUserPasswordBySysAdmin(USERS_DOMAIN_DN, "user06", "P@ssw0rd123", "hello@World");
         
         // Test change ldap users password
         //app.changeLdapUserPassword(USERS_DOMAIN_DN, "user01", "P@ssw0rd123", "hello@World");
@@ -87,6 +101,7 @@ public class App
     public String hashWith256(String textToHash) {
         MessageDigest digest;
         String encoded = "";
+        
 		try {
 			digest = MessageDigest.getInstance("SHA-256");
 			
@@ -102,9 +117,102 @@ public class App
         return encoded;
     }
     
+    public void test4() {
+    	int HASH_BYTE_SIZE = 256; // 512 bits
+    	int PBKDF2_ITERATIONS = 10000; 
+    	String password = "P@ssw0rd123";
+
+    	// generate random salt
+    	try
+        {
+    		byte salt[] = Hex.decodeHex("520f375ce57242d68b7769dd4b08c1eb");
+            SecretKeyFactory sk = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA1");
+            KeySpec keySpec = new PBEKeySpec( password.toCharArray(), salt, PBKDF2_ITERATIONS, HASH_BYTE_SIZE );
+            Key key = sk.generateSecret( keySpec );
+            byte[] hashkey = key.getEncoded();
+            
+            byte[] hashPwdSalt = new byte[hashkey.length + salt.length];
+            System.arraycopy(salt, 0, hashPwdSalt, 0, salt.length);
+            System.arraycopy(hashkey, 0, hashPwdSalt, salt.length, hashkey.length);
+            
+            System.out.println("salt (hex) = " + Hex.encodeHexString(salt));
+        	System.out.println("pwd (hex) = " + Hex.encodeHexString(hashkey));
+        	System.out.println("hash = " + Base64.getEncoder().encodeToString(hashPwdSalt));
+        }
+        catch ( Exception e )
+        {	System.out.println(e);
+            
+        }
+    }
+    
+    public void test3() throws Exception {
+    	String pwdHex_ds = "697c36062e4c60c1c9e89965d036fa42fdf0d80145434212109e8e3689a59405";
+    	byte[] salt_ds = Hex.decodeHex("520f375ce57242d68b7769dd4b08c1eb");
+    	
+    	String password = "P@ssw0rd123";
+    	//byte[] salt = generatePasswordSalt(16);
+    	int count = 1000;
+    	//PBKDF2WithHmacSHA1
+    	//PBEParametersGenerator generator = new PKCS5S2ParametersGenerator(new SHA256Digest());
+    	PBEParametersGenerator generator = new PKCS5S2ParametersGenerator();
+    	generator.init(password.getBytes(), salt_ds, count);
+    	byte[] dk = ((KeyParameter) generator.generateDerivedMacParameters(256)).getKey();
+    	
+    	System.out.println("DS pwd (hex) = " + pwdHex_ds);
+    	System.out.println("salt (hex) = " + Hex.encodeHexString(salt_ds));
+    	System.out.println("pwd (hex) = " + Hex.encodeHexString(dk));
+    	System.out.println("dk = " + Base64.getEncoder().encodeToString(dk));
+    }
+    
+    
+    public void test2() {
+    	int maxKeySize = 0;
+    	
+    	System.out.println("crypto.policy = " + Security.getProperty("crypto.policy"));
+    	
+		try {
+			maxKeySize = Cipher.getMaxAllowedKeyLength("AES");
+		} catch (NoSuchAlgorithmException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	System.out.println("Max Key Size for AES : " + maxKeySize);
+    	
+    	
+    	try {
+			Cipher cipher = Cipher.getInstance("PBEWithHmacSHA1");
+			
+		} catch (NoSuchAlgorithmException e) {
+			System.out.println(e);
+			e.printStackTrace();
+		} catch (NoSuchPaddingException e) {
+			System.out.println(e);
+			e.printStackTrace();
+		}
+    }
+    
     
     public void test() {
     	String password = "P@ssw0rd123";
+    	
+    	//MessageDigest md = MessageDigest.getInstance("SHA-256");
+    	for(Provider provider : Security.getProviders()) {
+    		System.out.println("provider name = " + provider.getName());
+    		for (Enumeration<Object> e = provider.keys(); e.hasMoreElements(); ) {
+            	String currentKey = ((String)e.nextElement()).toUpperCase(Locale.ENGLISH);
+            	System.out.println("-- " + currentKey);
+            }
+    	}
+    	
+    	String[] serviceNames = {"Signature", "MessageDigest", "Cipher", "Mac", "KeyStore" };
+    	
+    	for(String name : serviceNames) {
+    		System.out.println("Service Name = " + name);
+    		for(String s : Security.getAlgorithms(name)) {
+        		System.out.println("--- Algorithm = " + s);
+        	}
+    	}
+    	
     	
     	byte[] digest = DigestUtils.sha256(password);
     	
@@ -125,9 +233,9 @@ public class App
     	System.out.println("encoded sha256 = " + Base64.getEncoder().encodeToString(DigestUtils.sha256(password)));
     }
     
-    private static byte[] generatePasswordSalt() {
+    private static byte[] generatePasswordSalt(int size) {
         SecureRandom random = new SecureRandom();
-        byte[] salt = new byte[8];
+        byte[] salt = new byte[size];
         random.nextBytes(salt);
         return salt;
     }
@@ -159,7 +267,7 @@ public class App
 	    	}
 	    	case SSHA: {
 	    		prefix = "{SSHA}";
-	    		byte[] salt = generatePasswordSalt(); 
+	    		byte[] salt = generatePasswordSalt(8); 
 	    		byte[] pwd = password.getBytes();
 	    		
 	    		// combine password and salt bytes
@@ -178,7 +286,7 @@ public class App
 	    	}
 	    	case SSHA_256: {
 	    		prefix = "{SSHA256}";
-	    		byte[] salt = generatePasswordSalt(); 
+	    		byte[] salt = generatePasswordSalt(8); 
 	    		byte[] pwd = password.getBytes();
 	    		
 	    		// combine password and salt bytes
@@ -197,7 +305,7 @@ public class App
 	    	}
 	    	case SSHA_384: {
 	    		prefix = "{SSHA384}";
-	    		byte[] salt = generatePasswordSalt(); 
+	    		byte[] salt = generatePasswordSalt(8); 
 	    		byte[] pwd = password.getBytes();
 	    		
 	    		// combine password and salt bytes
@@ -216,7 +324,7 @@ public class App
 	    	}
 	    	case SSHA_512: {
 	    		prefix = "{SSHA512}";
-	    		byte[] salt = generatePasswordSalt(); 
+	    		byte[] salt = generatePasswordSalt(8); 
 	    		byte[] pwd = password.getBytes();
 	    		
 	    		// combine password and salt bytes
@@ -234,12 +342,48 @@ public class App
 	    		break;
 	    	}
 	    	case MD5: {
+	    		prefix = "{MD5}";
+	    		hashPassword = DigestUtils.md5(password);
 	    		break;
 	    	}
 	    	case SMD5: {
+	    		prefix = "{SMD5}";
+	    		byte[] salt = generatePasswordSalt(8); 
+	    		byte[] pwd = password.getBytes();
+	    		
+	    		// combine password and salt bytes
+	    		byte[] pwdsalt = new byte[pwd.length + salt.length];
+	    		System.arraycopy(pwd, 0, pwdsalt, 0, pwd.length);
+	            System.arraycopy(salt, 0, pwdsalt, pwd.length, salt.length);
+	    		
+	            // generate the password hash using (password + salt)
+	            byte[] hashTemp = DigestUtils.md5(pwdsalt);
+	            
+	            // combine password hash and salt bytes
+	            hashPassword = new byte[hashTemp.length + salt.length];
+	            System.arraycopy(hashTemp, 0, hashPassword, 0, hashTemp.length);
+	            System.arraycopy(salt, 0, hashPassword, hashTemp.length, salt.length);
 	    		break;
 	    	}
-	    	case PKCS5C2: {
+	    	case PKCS5S2: {
+	    		prefix = "{PKCS5S2}";
+	    		byte[] salt = generatePasswordSalt(16); 
+	    		
+				try {
+					SecretKeyFactory sk = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA1");
+					
+					KeySpec keySpec = new PBEKeySpec( password.toCharArray(), salt, 10000, 256 );
+		            Key key = sk.generateSecret( keySpec );
+		            byte[] hashkey = key.getEncoded();
+		            
+		            // combine salt and password hash bytes
+		            hashPassword = new byte[hashkey.length + salt.length];
+		            System.arraycopy(salt, 0, hashPassword, 0, salt.length);
+		            System.arraycopy(hashkey, 0, hashPassword, salt.length, hashkey.length);
+				} 
+				catch ( Exception e ) {
+		            throw new RuntimeException( e );
+		        }
 	    		break;
 	    	}
 	    	case CRYPT: {
@@ -389,7 +533,7 @@ public class App
     	LdapContext ctx = ldapConnect(SYS_DOMAIN_DN, sysDN, SYS_ADMIN_PASSWORD);    	
     	if( ctx != null ) {
     		try {
-    			String newEncodedHashPwd = formatEncodedHashPassword(App.PASSWORD_HASH.SSHA_256, newPassword);
+    			String newEncodedHashPwd = formatEncodedHashPassword(App.PASSWORD_HASH.PKCS5S2, newPassword);
     			System.out.println("New Encoded Hashed Password = " + newEncodedHashPwd);
     		
     			ModificationItem item = new ModificationItem(DirContext.REPLACE_ATTRIBUTE, 
