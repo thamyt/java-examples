@@ -13,7 +13,7 @@ import javax.servlet.http.HttpSession;
 /**
  * Servlet implementation class LogoutServlet
  */
-@WebServlet("/LogoutServlet")
+@WebServlet("/secure/LogoutServlet")
 public class LogoutServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -42,7 +42,7 @@ public class LogoutServlet extends HttpServlet {
     		System.out.println("No session found");
     	}
     	
-    	RequestDispatcher requestDispatcher= request.getRequestDispatcher("WEB-INF/jsp/index.jsp");
+    	RequestDispatcher requestDispatcher= request.getRequestDispatcher("/WEB-INF/jsp/index.jsp");
     	requestDispatcher.forward(request, response);
 	}
 

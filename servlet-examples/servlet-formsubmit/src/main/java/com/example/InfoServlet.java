@@ -14,7 +14,7 @@ import javax.servlet.http.HttpSession;
 /**
  * Servlet implementation class InfoServlet
  */
-@WebServlet("/InfoServlet")
+@WebServlet("/secure/InfoServlet")
 public class InfoServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -32,7 +32,9 @@ public class InfoServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {	
 		System.out.println("Inside InfoServlet");
 		
-		RequestDispatcher requestDispatcher = request.getRequestDispatcher("WEB-INF/jsp/myinfo.jsp");
+		System.out.println("Context Path =" + request.getContextPath());
+		
+		RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/jsp/myinfo.jsp");
         requestDispatcher.forward(request, response);
 	}
 

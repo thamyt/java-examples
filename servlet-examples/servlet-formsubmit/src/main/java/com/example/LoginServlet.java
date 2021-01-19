@@ -37,7 +37,7 @@ public class LoginServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("Inside LoginServlet (get)");
-		RequestDispatcher requestDispatcher= request.getRequestDispatcher("WEB-INF/jsp/login.jsp");
+		RequestDispatcher requestDispatcher= request.getRequestDispatcher("/WEB-INF/jsp/login.jsp");
         requestDispatcher.forward(request, response);
 	}
 
@@ -85,14 +85,18 @@ public class LoginServlet extends HttpServlet {
 				// validation passed
 				HttpSession session = request.getSession();
 	    		System.out.println("session_id = " + session.getId());
+	    		// set the session timeout
+	    		//session.setMaxInactiveInterval(2*60);
+	    		System.out.println("Session timeout (seconds) = " + session.getMaxInactiveInterval());
+	    		
 	    		session.setAttribute("userid", userId);
 	    		session.setAttribute("fname", firstName);
 	    		session.setAttribute("lname", lastName);
 			}
 		}
 		
-		RequestDispatcher requestDispatcher= (errors == null) ? request.getRequestDispatcher("WEB-INF/jsp/greeting.jsp") :
-																request.getRequestDispatcher("WEB-INF/jsp/login.jsp");
+		RequestDispatcher requestDispatcher= (errors == null) ? request.getRequestDispatcher("/WEB-INF/jsp/greeting.jsp") :
+																request.getRequestDispatcher("/WEB-INF/jsp/login.jsp");
         requestDispatcher.forward(request, response);
 	}
 
