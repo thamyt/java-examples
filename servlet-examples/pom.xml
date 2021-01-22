@@ -43,5 +43,7 @@
 		<module>servlet-formsubmit</module>
     <module>servlet-basicFileAuth-xmlconfig</module>
     <module>servlet-basicFileAuth-annotation</module>
+    <module>servlet-formBasedAuth-xmlconfig</module>
+    <module>servlet-formBasedAuth-annotation</module>
   </modules>
 </project>
