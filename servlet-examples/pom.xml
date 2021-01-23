@@ -45,5 +45,6 @@
     <module>servlet-basicFileAuth-annotation</module>
     <module>servlet-formBasedAuth-xmlconfig</module>
     <module>servlet-formBasedAuth-annotation</module>
+    <module>servlet-ldapAuth-xmlconfig</module>
   </modules>
 </project>
