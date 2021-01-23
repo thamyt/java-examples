@@ -28,7 +28,13 @@
 		<display-name>LoginServlet</display-name>
 		<servlet-name>LoginServlet</servlet-name>
 		<servlet-class>com.example.formBasedAuth.LoginServlet</servlet-class>
-	</servlet>	
+	</servlet>
+	<servlet>
+		<description></description>
+		<display-name>LogoutServlet</display-name>
+		<servlet-name>LogoutServlet</servlet-name>
+		<servlet-class>com.example.formBasedAuth.LogoutServlet</servlet-class>
+	</servlet>
 	<servlet>
 		<description></description>
 		<display-name>CashierServlet</display-name>
@@ -65,7 +71,11 @@
 	<servlet-mapping>
 		<servlet-name>LoginServlet</servlet-name>
 		<url-pattern>/secure/login</url-pattern>
-	</servlet-mapping>	
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>LogoutServlet</servlet-name>
+		<url-pattern>/logout</url-pattern>
+	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>CashierServlet</servlet-name>
 		<url-pattern>/secure/cashier</url-pattern>

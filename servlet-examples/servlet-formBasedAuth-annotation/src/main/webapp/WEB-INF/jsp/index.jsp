@@ -17,7 +17,7 @@
 	<a href="secure/login">Login</a>
 	</c:if>
 	<c:if test="${not empty pageContext.request.userPrincipal.name}">
-	Welcome <c:out value="${pageContext.request.userPrincipal.name}" /> | <a href="logout.jsp">Logout</a>
+	Welcome <c:out value="${pageContext.request.userPrincipal.name}" /> | <a href="logout">Logout</a>
 	</c:if>
 	
 	<h2>Options</h2>
