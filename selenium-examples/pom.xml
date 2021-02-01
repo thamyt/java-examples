@@ -14,9 +14,11 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
-		<selenium.version>3.141.59</selenium.version>
+		<selenium.version>4.0.0-alpha-6</selenium.version>
 		<junit.version>3.8.1</junit.version>
-		<testng.version>6.10</testng.version>
+		<testng.version>7.3.0</testng.version>
+		<htmlunit-driver.version>2.46.0</htmlunit-driver.version>
+		<phantomjsdriver.version>1.4.4</phantomjsdriver.version>
 	</properties>
 
 	<dependencyManagement>
@@ -25,6 +27,16 @@
 				<groupId>org.seleniumhq.selenium</groupId>
 				<artifactId>selenium-java</artifactId>
 				<version>${selenium.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.seleniumhq.selenium</groupId>
+				<artifactId>htmlunit-driver</artifactId>
+				<version>${htmlunit-driver.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.codeborne</groupId>
+				<artifactId>phantomjsdriver</artifactId>
+				<version>${phantomjsdriver.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>junit</groupId>
@@ -66,5 +78,6 @@
 
 	<modules>
 		<module>selenium-webdriver-test</module>
+		<module>selenium-headless-webdriver-test</module>
 	</modules>
 </project>

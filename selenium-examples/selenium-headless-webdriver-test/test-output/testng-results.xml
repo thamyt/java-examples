@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="0" ignored="0" total="1" passed="1">
+  <reporter-output>
+  </reporter-output>
+  <suite name="Suite" duration-ms="7853" started-at="2021-02-01T18:15:42 SGT" finished-at="2021-02-01T18:15:50 SGT">
+    <groups>
+    </groups>
+    <test name="HtmlUnitTest" duration-ms="7853" started-at="2021-02-01T18:15:42 SGT" finished-at="2021-02-01T18:15:50 SGT">
+      <class name="com.example.selenium.headless.webdriver.test.TestModuleLogin">
+        <test-method status="PASS" signature="beforeTest(java.lang.String)[pri:0, instance:com.example.selenium.headless.webdriver.test.TestModuleLogin@6385cb26]" name="beforeTest" is-config="true" duration-ms="2520" started-at="2021-02-01T18:15:42 SGT" finished-at="2021-02-01T18:15:44 SGT">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[Edge-Headless]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeTest -->
+        <test-method status="PASS" signature="verifyTitle()[pri:0, instance:com.example.selenium.headless.webdriver.test.TestModuleLogin@6385cb26]" name="verifyTitle" duration-ms="5237" started-at="2021-02-01T18:15:44 SGT" finished-at="2021-02-01T18:15:49 SGT">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- verifyTitle -->
+        <test-method status="PASS" signature="afterTest()[pri:0, instance:com.example.selenium.headless.webdriver.test.TestModuleLogin@6385cb26]" name="afterTest" is-config="true" duration-ms="77" started-at="2021-02-01T18:15:49 SGT" finished-at="2021-02-01T18:15:50 SGT">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterTest -->
+      </class> <!-- com.example.selenium.headless.webdriver.test.TestModuleLogin -->
+    </test> <!-- HtmlUnitTest -->
+  </suite> <!-- Suite -->
+</testng-results>
