@@ -6,8 +6,10 @@ public class MyWebInitializer extends AbstractAnnotationConfigDispatcherServletI
 
 	@Override
 	protected Class<?>[] getRootConfigClasses() {
-		// TODO Auto-generated method stub
-		return null;
+		return new Class[]{ContextConfig.class,
+						   BeanConfig.class,
+						   PropertyConfig.class};
+		
 	}
 
 	@Override
