@@ -1,4 +1,4 @@
-package com.example.mvc_xmlconfig.controller;
+package com.example.mvc_javaconfig.controller;
 
 import java.util.Map;
 
@@ -10,7 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.example.mvc_xmlconfig.model.HelloBean;
+import com.example.mvc_javaconfig.model.HelloBean;
 
 @Controller
 public class HomeController {

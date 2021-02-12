@@ -7,10 +7,10 @@
 	<c:set var="url">${pageContext.request.requestURL}</c:set>
     <base href="${fn:substring(url, 0, fn:length(url) - fn:length(pageContext.request.requestURI))}${pageContext.request.contextPath}/" />
 
-    <title>Spring MVC XML Config Demo</title>
+    <title>Spring MVC Java Config Demo</title>
 </head>
 <body>
-    <h1>Spring MVC XML Config Demo (JSP)</h1>
+    <h1>Spring MVC Java Config Demo (JSP)</h1>
 
    	<h2><c:out value="${helloMsg.message}" /></h2>
    	

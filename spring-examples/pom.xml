@@ -13,6 +13,7 @@
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
 		<servlet-api.version>4.0.1</servlet-api.version>
+		<jsp-api.version>2.1</jsp-api.version>
 		<spring.version>5.2.12.RELEASE</spring.version>
 		<jstl.version>1.2</jstl.version>
 		<thymeleaf.version>3.0.12.RELEASE</thymeleaf.version>
@@ -26,6 +27,14 @@
 				<groupId>javax.servlet</groupId>
 				<artifactId>javax.servlet-api</artifactId>
 				<version>${servlet-api.version}</version>
+				<scope>provided</scope>
+			</dependency>
+			
+			<!-- JSP API -->
+			<dependency>
+				<groupId>javax.servlet.jsp</groupId>
+				<artifactId>jsp-api</artifactId>
+				<version>${jsp-api.version}</version>
 				<scope>provided</scope>
 			</dependency>
 		
@@ -98,6 +107,10 @@
 					<artifactId>exec-maven-plugin</artifactId>
 					<version>1.6.0</version>
 				</plugin>
+				<plugin>
+    				<artifactId>maven-war-plugin</artifactId>
+    				<version>3.1.0</version>
+				</plugin>
 			</plugins>
 		</pluginManagement>
 	</build>
@@ -106,5 +119,6 @@
 		<module>spring-console-xmlconfig</module>
 		<module>spring-console-javaconfig</module>
     	<module>spring-mvc-xmlconfig</module>
+    <module>spring-mvc-javaconfig</module>
   </modules>
 </project>
