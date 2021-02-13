@@ -1,4 +1,4 @@
-package com.example.mvc_javaconfig.config;
+package com.example.mvc_javaconfig.config.root;
 
 
 import org.springframework.context.annotation.Bean;

@@ -1,9 +1,10 @@
-package com.example.mvc_javaconfig.config;
+package com.example.mvc_javaconfig.config.servlet;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer;
@@ -17,6 +18,13 @@ import org.thymeleaf.spring5.view.ThymeleafViewResolver;
 @ComponentScan(basePackages = {"com.example.mvc_javaconfig.controller"})
 public class WebConfig implements WebMvcConfigurer {
 
+	@Override
+	public void addResourceHandlers(ResourceHandlerRegistry registry) {
+		// TODO Auto-generated method stub
+		registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
+		WebMvcConfigurer.super.addResourceHandlers(registry);
+	}
+
 	@Bean
 	public InternalResourceViewResolver jspViewResolver() {
 		InternalResourceViewResolver resolver = new InternalResourceViewResolver();
@@ -26,6 +34,7 @@ public class WebConfig implements WebMvcConfigurer {
 		resolver.setOrder(0);
 		return resolver;
 	}
+	
 	
 	@Bean
     public SpringTemplateEngine templateEngine() {
