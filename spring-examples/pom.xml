@@ -120,5 +120,6 @@
 		<module>spring-console-javaconfig</module>
     	<module>spring-mvc-xmlconfig</module>
     <module>spring-mvc-javaconfig</module>
+    <module>spring-mvc-multiservlets-xmlconfig</module>
   </modules>
 </project>
