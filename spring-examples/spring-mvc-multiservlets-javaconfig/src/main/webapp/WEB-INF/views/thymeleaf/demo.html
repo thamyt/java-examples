@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Spring MVC XML Config Demo</title>
+</head>
+<body>
+    <h1>Spring MVC XML Config Demo (Thymeleaf)</h1>
+   
+   		<table id="menu">
+		<thead>
+			<tr>
+				<th>No.</th>
+				<th>Description</th>
+				<th>Link</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>1.</td>
+				<td>To test the Thymeleaf looping feature</td>
+				<td><a href="thymeleaf/loop">Demo</a></td>
+			</tr>
+		</tbody>
+		<tfoot>
+			<tr>
+				<th>2.</th>
+				<th>TBD</th>
+				<th>Demo</th>
+			</tr>
+		</tfoot>
+	</table>
+   
+    <a th:href="@{/}">Home</a>
+</body>
+</html>

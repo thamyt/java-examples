@@ -21,7 +21,7 @@
     	<property name="prefix" value="/WEB-INF/views/jsp/" />
     	<property name="suffix" value=".jsp" />
     	<!--  
-    	<property name="viewNames" value="jsp/*" />
+    	<property name="viewNames" value="*.jsp" />
         <property name="order" value="3" />
         -->
     </bean>
