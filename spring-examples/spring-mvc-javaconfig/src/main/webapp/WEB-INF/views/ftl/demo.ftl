@@ -23,7 +23,7 @@
 			<tr>
 				<td>1.</td>
 				<td>To test the Freemarker looping feature</td>
-				<td><a href="freemarkerdemo/loop">Demo</a></td>
+				<td><a href="freemarker/loop">Demo</a></td>
 			</tr>
 		</tbody>
 		<tfoot>

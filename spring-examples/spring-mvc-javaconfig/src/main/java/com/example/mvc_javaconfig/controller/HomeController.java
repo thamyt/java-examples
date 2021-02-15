@@ -31,25 +31,6 @@ public class HomeController {
 		ctrList.forEach((k, v) -> System.out.println((k + ":" + v)));
 		
 		model.addAttribute("helloMsg", helloBean);
-		return "thymeleaf/index";
+		return "index.html";
 	}
-	/*
-	@RequestMapping(value="/thymeleaf", method = RequestMethod.GET)
-	public String thymeleaf(Model model) {
-		model.addAttribute("helloMsg", helloBean);
-		return "thymeleaf/demo";
-	}
-	
-	@RequestMapping(value="/jsp", method = RequestMethod.GET)
-	public String jspPage(Model model) {
-		model.addAttribute("helloMsg", helloBean);
-		return "jsp/demo";
-	}
-	
-	@RequestMapping(value="/freemarker", method = RequestMethod.GET)
-	public String ftlPage(Model model) {		
-		model.addAttribute("helloMsg", helloBean);
-		return "demo";
-	}
-	*/
 }

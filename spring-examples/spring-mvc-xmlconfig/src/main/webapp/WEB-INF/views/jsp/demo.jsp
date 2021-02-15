@@ -26,7 +26,7 @@
 			<tr>
 				<td>1.</td>
 				<td>To test the JSP looping feature</td>
-				<td><a href="jspdemo/loop">Demo</a></td>
+				<td><a href="jsp/loop">Demo</a></td>
 			</tr>
 		</tbody>
 		<tfoot>

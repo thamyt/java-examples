@@ -28,13 +28,12 @@ public class WebConfig implements WebMvcConfigurer {
 	@Bean
 	public InternalResourceViewResolver jspViewResolver() {
 		InternalResourceViewResolver resolver = new InternalResourceViewResolver();
-		resolver.setPrefix("/WEB-INF/views/");
-		resolver.setViewNames("jsp/*");
-		resolver.setSuffix(".jsp");
-		resolver.setOrder(0);
+		resolver.setPrefix("/WEB-INF/views/jsp/");
+		//resolver.setSuffix(".jsp");
+		resolver.setViewNames("*.jsp");
+		resolver.setOrder(2);
 		return resolver;
 	}
-	
 	
 	@Bean
     public SpringTemplateEngine templateEngine() {
@@ -53,8 +52,8 @@ public class WebConfig implements WebMvcConfigurer {
     @Bean
     public SpringResourceTemplateResolver thymeleafTemplateResolver() {
         SpringResourceTemplateResolver templateResolver = new SpringResourceTemplateResolver();
-        templateResolver.setPrefix("/WEB-INF/views/");
-        templateResolver.setSuffix(".html");
+        templateResolver.setPrefix("/WEB-INF/views/thymeleaf/");
+        //templateResolver.setSuffix(".html");
         templateResolver.setTemplateMode("HTML5");
         templateResolver.setCacheable(true);
         return templateResolver;
@@ -64,8 +63,8 @@ public class WebConfig implements WebMvcConfigurer {
     public ThymeleafViewResolver thymeleafViewResolver() {
         ThymeleafViewResolver viewResolver = new ThymeleafViewResolver();
         viewResolver.setTemplateEngine(templateEngine());
-        viewResolver.setViewNames(new String[] {"thymeleaf/*"});
-        viewResolver.setOrder(1);
+        viewResolver.setViewNames(new String[] {"*.html"});
+        viewResolver.setOrder(0);
         return viewResolver;
     }
 	
@@ -73,8 +72,10 @@ public class WebConfig implements WebMvcConfigurer {
     public FreeMarkerViewResolver freemarkerViewResolver() {
 		FreeMarkerViewResolver resolver = new FreeMarkerViewResolver();
         resolver.setCache(true);
-        resolver.setSuffix(".ftl");
         resolver.setPrefix("");
+        //resolver.setSuffix(".ftl");
+        resolver.setViewNames("*.ftl");
+        resolver.setOrder(1);
         return resolver;
     }
 

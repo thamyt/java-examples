@@ -12,12 +12,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.example.mvc_javaconfig.model.UserBean;
 
 @Controller
-@RequestMapping(value="/freemarkerdemo")
+@RequestMapping("/freemarker")
 public class FreemarkerDemoController {
 
-	@RequestMapping(value="", method = RequestMethod.GET)
+	@RequestMapping(method = RequestMethod.GET)
 	public String home(Model model) {
-		return "demo";
+		return "demo.ftl";
 	}
 	
 	@RequestMapping(value="/loop", method = RequestMethod.GET)
@@ -31,6 +31,6 @@ public class FreemarkerDemoController {
 	
 		model.addAttribute("users", users);
 		
-		return "loop";
+		return "loop.ftl";
 	}
 }

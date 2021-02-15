@@ -12,12 +12,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.example.mvc_xmlconfig.model.UserBean;
 
 @Controller
-@RequestMapping(value="/thymeleafdemo")
+@RequestMapping("/thymeleaf")
 public class ThymeLeafDemoController {
 
-	@RequestMapping(value="", method = RequestMethod.GET)
+	@RequestMapping(method = RequestMethod.GET)
 	public String home(Model model) {
-		return "thymeleaf/demo";
+		return "demo.html";
 	}
 	
 	@RequestMapping(value="/loop", method = RequestMethod.GET)
@@ -31,6 +31,6 @@ public class ThymeLeafDemoController {
 	
 		model.addAttribute("users", users);
 		
-		return "thymeleaf/loop";
+		return "loop.html";
 	}
 }

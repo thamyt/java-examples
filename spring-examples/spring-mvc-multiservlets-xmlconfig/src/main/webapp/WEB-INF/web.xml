@@ -15,7 +15,8 @@
         <listener-class>org.springframework.web.context.ContextLoaderListener
         </listener-class>
     </listener>
-    
+      
+    <!--  
     <servlet>
         <servlet-name>SpringDispatcher</servlet-name>
         <servlet-class>org.springframework.web.servlet.DispatcherServlet
@@ -30,7 +31,8 @@
         <servlet-name>SpringDispatcher</servlet-name>
         <url-pattern>/</url-pattern>
     </servlet-mapping>
-  
+   	-->
+ 
   	<servlet>
         <servlet-name>SpringDispatcherJsp</servlet-name>
         <servlet-class>org.springframework.web.servlet.DispatcherServlet
@@ -39,12 +41,41 @@
             <param-name>contextConfigLocation</param-name>
             <param-value>/WEB-INF/spring/spring-servlet-mvc-jsp.xml</param-value>
         </init-param>
-        <load-on-startup>-1</load-on-startup>
+        <load-on-startup>1</load-on-startup>
     </servlet>
     <servlet-mapping>
         <servlet-name>SpringDispatcherJsp</servlet-name>
-        <url-pattern>/jsp/**</url-pattern>
+        <url-pattern>/jsp/*</url-pattern>
     </servlet-mapping>
-  
+     
+    <servlet>
+        <servlet-name>SpringDispatcherFreemarker</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet
+        </servlet-class>
+        <init-param>
+            <param-name>contextConfigLocation</param-name>
+            <param-value>/WEB-INF/spring/spring-servlet-mvc-freemarker.xml</param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SpringDispatcherFreemarker</servlet-name>
+        <url-pattern>/freemarker/*</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>SpringDispatcherThymeleaf</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet
+        </servlet-class>
+        <init-param>
+            <param-name>contextConfigLocation</param-name>
+            <param-value>/WEB-INF/spring/spring-servlet-mvc-thymeleaf.xml</param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SpringDispatcherThymeleaf</servlet-name>
+        <url-pattern>/thymeleaf/*</url-pattern>
+    </servlet-mapping>
   
 </web-app>

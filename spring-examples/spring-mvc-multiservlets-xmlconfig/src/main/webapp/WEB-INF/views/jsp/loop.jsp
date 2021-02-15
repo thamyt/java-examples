@@ -42,7 +42,7 @@
 		</tfoot>
 	</table>
    	
-    <a href="jspdemo">Home</a>
+    <a href="jsp">Home</a>
    
 </body>
 </html>

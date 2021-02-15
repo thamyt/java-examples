@@ -12,13 +12,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.example.mvc_multiservlets_xmlconfig.bean.UserBean;
 
 @Controller
-@RequestMapping(value="/jsp")
+@RequestMapping("/")
 public class JspDemoController {
 	
-	@RequestMapping(method = RequestMethod.GET)
+	@RequestMapping(value="/jsp", method = RequestMethod.GET)
 	public String home(Model model) {
 		System.out.println("Inside JspDemoController home()");
-		return "demo.jsp";
+		return "demo";
 	}
 	
 	@RequestMapping(value="/loop", method = RequestMethod.GET)
@@ -34,7 +34,7 @@ public class JspDemoController {
 		
 		model.addAttribute("users", users);
 		
-		return "loop.jsp";
+		return "loop";
 	}
 	
 	

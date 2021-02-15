@@ -40,6 +40,6 @@
 		</tfoot>
 	</table>
    	
-    <a href="<@spring.url '/freemarkerdemo'/>">Home</a>
+    <a href="<@spring.url '/freemarker'/>">Home</a>
 </body>
 </html>
