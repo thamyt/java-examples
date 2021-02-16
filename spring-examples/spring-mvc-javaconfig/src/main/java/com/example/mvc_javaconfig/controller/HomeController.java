@@ -10,11 +10,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.example.mvc_javaconfig.bean.HelloBean;
 import com.example.mvc_javaconfig.dto.UserDTO;
-import com.example.mvc_javaconfig.model.HelloBean;
 
 @Controller
-public class HomeController {
+public class HomeController extends BaseController {
 	
 	@Autowired
 	private UserDTO userDTO;

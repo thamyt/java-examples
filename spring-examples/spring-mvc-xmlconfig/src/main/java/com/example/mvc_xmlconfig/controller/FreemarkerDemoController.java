@@ -9,11 +9,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.example.mvc_xmlconfig.model.UserBean;
+import com.example.mvc_xmlconfig.bean.UserBean;
 
 @Controller
 @RequestMapping("/freemarker")
-public class FreemarkerDemoController {
+public class FreemarkerDemoController extends BaseController {
 
 	@RequestMapping(method = RequestMethod.GET)
 	public String home(Model model) {

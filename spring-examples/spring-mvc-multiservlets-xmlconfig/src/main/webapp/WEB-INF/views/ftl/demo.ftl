@@ -6,10 +6,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Spring MVC XML Config Demo</title>
+    <title>${title}</title>
 </head>
 <body>
-    <h1>Spring MVC XML Config Demo (Free marker)</h1>
+    <h1>${title} (Free marker)</h1>
    		
    	<table id="menu">
 		<thead>

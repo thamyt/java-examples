@@ -10,10 +10,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.example.mvc_multiservlets_xmlconfig.bean.UserBean;
+import com.example.mvc_multiservlets_xmlconfig.controller.base.BaseController;
 
 @Controller
 @RequestMapping(value="/")
-public class FreemarkerDemoController {
+public class FreemarkerDemoController extends BaseController {
 
 	@RequestMapping(value="/freemarker", method = RequestMethod.GET)
 	public String home(Model model) {

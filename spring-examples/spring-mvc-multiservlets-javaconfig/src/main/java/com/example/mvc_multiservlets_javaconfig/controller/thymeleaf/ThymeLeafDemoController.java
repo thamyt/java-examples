@@ -10,9 +10,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.example.mvc_multiservlets_javaconfig.bean.UserBean;
+import com.example.mvc_multiservlets_javaconfig.controller.base.BaseController;
 
 @Controller
-public class ThymeLeafDemoController {
+public class ThymeLeafDemoController extends BaseController {
 
 	@RequestMapping(value="/thymeleaf", method = RequestMethod.GET)
 	public String home(Model model) {

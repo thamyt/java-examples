@@ -1,4 +1,4 @@
-package com.example.mvc_xmlconfig.model;
+package com.example.mvc_xmlconfig.bean;
 
 import java.util.Date;
 

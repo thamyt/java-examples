@@ -10,11 +10,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.example.mvc_xmlconfig.model.HelloBean;
+import com.example.mvc_xmlconfig.bean.HelloBean;
 
 @Controller
 @RequestMapping("/")
-public class HomeController {
+public class HomeController extends BaseController {
 	
 	@Autowired
 	private HelloBean helloBean;
@@ -24,7 +24,6 @@ public class HomeController {
 
 	@RequestMapping(method = RequestMethod.GET)
 	public String home(Model model) {
-		
 		ctrList.forEach((k, v) -> System.out.println((k + ":" + v)));
 		
 		model.addAttribute("helloMsg", helloBean);

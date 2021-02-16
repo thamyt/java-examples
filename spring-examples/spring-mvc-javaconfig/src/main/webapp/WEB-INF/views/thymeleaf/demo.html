@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Spring MVC Java Config Demo</title>
+    <title th:text="${title}" />
 </head>
 <body>
-    <h1>Spring MVC Java Config Demo (Thymeleaf)</h1>
+    <h1 th:text="${title + ' (Thymeleaf)'}" />
    
-   		<table id="menu">
+   	<table id="menu">
 		<thead>
 			<tr>
 				<th>No.</th>

@@ -1,4 +1,4 @@
-package com.example.mvc_javaconfig.model;
+package com.example.mvc_javaconfig.bean;
 
 import java.util.Date;
 

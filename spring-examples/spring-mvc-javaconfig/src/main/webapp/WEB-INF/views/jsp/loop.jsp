@@ -8,10 +8,10 @@
 	<c:set var="url">${pageContext.request.requestURL}</c:set>
     <base href="${fn:substring(url, 0, fn:length(url) - fn:length(pageContext.request.requestURI))}${pageContext.request.contextPath}/" />
 
-    <title>Spring MVC Java Config Demo</title>
+    <title><c:out value="${title}"/></title>
 </head>
 <body>
-    <h1>Spring MVC Java Config Demo (JSP) - Loop </h1>
+    <h1><c:out value="${title}"/> (JSP) - Loop</h1>
 
     <h2>Users Information</h2>
 	<table id="menu">

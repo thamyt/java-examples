@@ -31,16 +31,17 @@
     	</property>
 	</bean>
 
-    
 	<bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
 	    <property name="basename">
     	    <value>messages/validation</value>
     	</property>
 	</bean>
 	
-	<bean class="com.example.mvc_xmlconfig.model.HelloBean">
+	<bean class="com.example.mvc_xmlconfig.bean.HelloBean">
 	    <property name="message" value="${app.hellomsg}" />
 	</bean>
+	
+	<bean class="com.example.mvc_xmlconfig.bean.AppProp" />
     
     <import resource="spring-context.xml"/>
 </beans>

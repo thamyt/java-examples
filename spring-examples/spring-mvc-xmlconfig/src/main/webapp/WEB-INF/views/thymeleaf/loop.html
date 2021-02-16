@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Spring MVC XML Config Demo</title>
+    <title th:text="${title}" />
 </head>
 <body>
-    <h1>Spring MVC XML Config Demo (Thymeleaf) - Loop </h1>
+	<h1 th:text="${title + ' (Thymeleaf) - Loop'}"/>
    
    	<h2>Users Information</h2>
 	<table id="menu">
