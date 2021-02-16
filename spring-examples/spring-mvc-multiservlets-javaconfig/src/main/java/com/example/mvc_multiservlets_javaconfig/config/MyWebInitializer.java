@@ -11,7 +11,6 @@ import org.springframework.web.servlet.DispatcherServlet;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 import com.example.mvc_multiservlets_javaconfig.config.root.RootConfig;
-import com.example.mvc_multiservlets_javaconfig.config.servlet.WebConfig;
 import com.example.mvc_multiservlets_javaconfig.config.servlet.WebFreemarkerConfig;
 import com.example.mvc_multiservlets_javaconfig.config.servlet.WebJspConfig;
 import com.example.mvc_multiservlets_javaconfig.config.servlet.WebThymeleafConfig;
@@ -74,19 +73,16 @@ public class MyWebInitializer extends AbstractAnnotationConfigDispatcherServletI
 	
 	@Override
 	protected Class<?>[] getRootConfigClasses() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	protected Class<?>[] getServletConfigClasses() {
 		return null;
-		//return new Class[] {WebConfig.class};
 	}
 
 	@Override
 	protected String[] getServletMappings() {
 		return null;
-		//return new String[] {"/"};
 	}
 }

@@ -15,6 +15,11 @@
     
     <mvc:annotation-driven/>
     
+    <mvc:interceptors>
+    	<bean id="loggerInterceptor" 
+    		  class="com.example.mvc_xmlconfig.interceptor.ExecuteTimeInterceptor"/>
+	</mvc:interceptors>
+    
    	<mvc:resources mapping="/resources/**" location="/resources/" />
 
    	<import resource="spring-servlet-mvc-jsp.xml"/>
