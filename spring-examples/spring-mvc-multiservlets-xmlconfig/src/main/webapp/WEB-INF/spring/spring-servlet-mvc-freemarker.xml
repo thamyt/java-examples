@@ -16,8 +16,10 @@
     <mvc:annotation-driven/>
     
     <mvc:interceptors>
-    	<bean id="loggerInterceptor" 
-    		  class="com.example.mvc_multiservlets_xmlconfig.interceptor.ExecuteTimeInterceptor"/>
+    	<mvc:interceptor>
+			<mvc:mapping path="/loop" />
+			<bean class="com.example.mvc_multiservlets_xmlconfig.interceptor.ExecuteTimeInterceptor" />				
+		</mvc:interceptor>
 	</mvc:interceptors>
     
    	<mvc:resources mapping="/resources/**" location="/resources/" />

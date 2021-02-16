@@ -13,7 +13,6 @@ import com.example.mvc_multiservlets_xmlconfig.bean.UserBean;
 import com.example.mvc_multiservlets_xmlconfig.controller.base.BaseController;
 
 @Controller
-@RequestMapping(value="/")
 public class FreemarkerDemoController extends BaseController {
 
 	@RequestMapping(value="/freemarker", method = RequestMethod.GET)

@@ -19,7 +19,8 @@ public class WebFreemarkerConfig implements WebMvcConfigurer {
 
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
-		registry.addInterceptor(new ExecuteTimeInterceptor());	
+		registry.addInterceptor(new ExecuteTimeInterceptor())
+		        .addPathPatterns("/loop");	
 		WebMvcConfigurer.super.addInterceptors(registry);
 	}
 

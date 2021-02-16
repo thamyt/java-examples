@@ -1,31 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xmlns:context="http://www.springframework.org/schema/context"
-       xmlns:mvc="http://www.springframework.org/schema/mvc"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:context="http://www.springframework.org/schema/context"
+	   xmlns:mvc="http://www.springframework.org/schema/mvc"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans
                            http://www.springframework.org/schema/beans/spring-beans.xsd
                            http://www.springframework.org/schema/mvc
                            http://www.springframework.org/schema/mvc/spring-mvc.xsd
                            http://www.springframework.org/schema/context
                            http://www.springframework.org/schema/context/spring-context.xsd ">
-   	
-   	<!-- Scans within the base package of the application for @Component classes to configure as beans --> 
-    <context:component-scan base-package="com.example.mvc_xmlconfig.controller" />
-    
-    <mvc:annotation-driven/>
-    
-    <mvc:interceptors>
-    	<bean id="loggerInterceptor" 
-    		  class="com.example.mvc_xmlconfig.interceptor.ExecuteTimeInterceptor"/>
-	</mvc:interceptors>
-    
-   	<mvc:resources mapping="/resources/**" location="/resources/" />
 
-   	<import resource="spring-servlet-mvc-jsp.xml"/>
-   	 
-   	<import resource="spring-servlet-mvc-thymeleaf.xml"/>
-   	
-   	<import resource="spring-servlet-mvc-freemarker.xml"/>
+	<!-- Scans within the base package of the application for @Component classes 
+		to configure as beans -->
+	<context:component-scan	base-package="com.example.mvc_xmlconfig.controller" />
+
+	<mvc:annotation-driven />
+
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/jsp/**" />
+			<mvc:exclude-mapping path="/jsp/loop"/>
+			<bean class="com.example.mvc_xmlconfig.interceptor.ExecuteTimeInterceptor" />				
+		</mvc:interceptor>
+	</mvc:interceptors>
+
+	<mvc:resources mapping="/resources/**" location="/resources/" />
+
+	<import resource="spring-servlet-mvc-jsp.xml" />
+
+	<import resource="spring-servlet-mvc-thymeleaf.xml" />
+
+	<import resource="spring-servlet-mvc-freemarker.xml" />
 
 </beans>

@@ -18,7 +18,9 @@ public class WebJspConfig implements WebMvcConfigurer {
 
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
-		registry.addInterceptor(new ExecuteTimeInterceptor());	
+		registry.addInterceptor(new ExecuteTimeInterceptor())
+				.addPathPatterns("/**")
+				.excludePathPatterns("/loop");	
 		WebMvcConfigurer.super.addInterceptors(registry);
 	}
 	

@@ -13,7 +13,6 @@ import com.example.mvc_multiservlets_xmlconfig.bean.UserBean;
 import com.example.mvc_multiservlets_xmlconfig.controller.base.BaseController;
 
 @Controller
-@RequestMapping("/")
 public class JspDemoController extends BaseController {
 	
 	@RequestMapping(value="/jsp", method = RequestMethod.GET)
