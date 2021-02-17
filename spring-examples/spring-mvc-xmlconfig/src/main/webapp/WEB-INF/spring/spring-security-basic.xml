@@ -7,10 +7,43 @@
                            http://www.springframework.org/schema/security
                            http://www.springframework.org/schema/security/spring-security.xsd">
 
+	<!-- Option 1: Use auto-config, which implicitly include certain security features
+	               this option use spring internal login form -->
+<!-- 
 	<sec:http auto-config="true">
         <sec:intercept-url pattern="/jsp/admin/**" access="hasRole('ROLE_USER')" />
         <sec:csrf disabled="true"/>
     </sec:http>
+ -->
+	<!-- Option 2: same as option 1 without auto-config. explicitly specify the security features -->
+<!-- 
+	<sec:http>
+        <sec:intercept-url pattern="/jsp/admin/**" access="hasRole('ROLE_USER')" />
+        <sec:form-login />
+		<sec:anonymous />
+		<sec:http-basic />
+		<sec:logout />
+		<sec:remember-me />
+        <sec:csrf disabled="true"/>
+    </sec:http>
+-->    
+    <!-- Option 3: use browser login form -->
+<!-- 
+    <sec:http>
+        <sec:intercept-url pattern="/jsp/admin/**" access="hasRole('ROLE_USER')" />
+		<sec:http-basic />
+        <sec:csrf disabled="true"/>
+    </sec:http>
+ -->    
+    <!-- Option 4: use custom login form -->
+    <sec:http pattern="/login.jsp*" security="none" />    	
+    <sec:http>
+        <sec:intercept-url pattern="/jsp/admin/**" access="hasRole('ROLE_USER')" />
+        <sec:form-login login-page="/login.jsp"  />
+		<sec:http-basic />
+        <sec:csrf disabled="true"/>
+    </sec:http>
+ 
 
     <sec:authentication-manager>
         <sec:authentication-provider>
