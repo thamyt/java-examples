@@ -26,6 +26,11 @@
 				<td>To test the JSP looping feature</td>
 				<td><a href="jsp/loop">Demo</a></td>
 			</tr>
+			<tr>
+				<td>2.</td>
+				<td>To test the Spring security feature</td>
+				<td><a href="jsp/admin">Demo</a></td>
+			</tr>
 		</tbody>
 		<tfoot>
 			<tr>

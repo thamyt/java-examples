@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:sec="http://www.springframework.org/schema/security"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                           http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/security
+                           http://www.springframework.org/schema/security/spring-security.xsd">
+
+	<sec:http auto-config="true">
+        <sec:intercept-url pattern="/jsp/admin/**" access="hasRole('ROLE_USER')" />
+        <sec:csrf disabled="true"/>
+    </sec:http>
+
+    <sec:authentication-manager>
+        <sec:authentication-provider>
+            <sec:user-service>
+                <sec:user name="test1" password="{noop}Password111" authorities="ROLE_USER" />
+                <sec:user name="test2" password="{noop}Password222" authorities="ROLE_USER" />
+                <sec:user name="test3" password="{noop}Password333" authorities="ROLE_USER" />
+            </sec:user-service>
+        </sec:authentication-provider>
+    </sec:authentication-manager>
+</beans>
