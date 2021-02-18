@@ -16,7 +16,7 @@
 
 	<mvc:annotation-driven />
 	
-	<mvc:view-controller path="/loginpage" view-name="login.html"/>
+	<mvc:view-controller path="/loginpage" view-name="login.ftl"/>
 
 	<mvc:interceptors>
 		<mvc:interceptor>
