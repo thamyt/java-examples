@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:sec="http://www.springframework.org/schema/security"
+<beans xmlns="http://www.springframework.org/schema/beans"   
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:sec="http://www.springframework.org/schema/security"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
                            http://www.springframework.org/schema/beans/spring-beans.xsd
                            http://www.springframework.org/schema/security
@@ -36,13 +36,15 @@
     </sec:http>
  -->    
     <!-- Option 4: use custom login form -->
-    <sec:http pattern="/login.jsp*" security="none" />    	
     <sec:http>
         <sec:intercept-url pattern="/jsp/admin/**" access="hasRole('ROLE_USER')" />
-        <sec:form-login login-page="/login.jsp"  />
+        <sec:form-login login-page="/loginpage"
+        				login-processing-url="/login"
+        				authentication-failure-url="/loginpage?error" />
 		<sec:http-basic />
-        <sec:csrf disabled="true"/>
+		<sec:csrf disabled="false" />
     </sec:http>
+    
  
 
     <sec:authentication-manager>
