@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"   
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:sec="http://www.springframework.org/schema/security"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                           http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/security
+                           http://www.springframework.org/schema/security/spring-security.xsd">
+
+	<bean id="passwordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder">
+        <!--Optional tag, setting the strength to 12 -->
+        <constructor-arg name="strength" value="12"/>
+    </bean>
+ 
+    <!-- use plain password -->
+    <!-- 
+    <sec:authentication-manager>
+        <sec:authentication-provider>
+            <sec:user-service>
+                <sec:user name="admin1" password="P@ssw0rd123" authorities="ROLE_ADMIN" />
+                <sec:user name="admin2" password="P@ssw0rd123" authorities="ROLE_ADMIN" />
+                <sec:user name="user1" password="P@ssw0rd123" authorities="ROLE_USER" />
+                <sec:user name="user2" password="P@ssw0rd123" authorities="ROLE_USER" />
+            </sec:user-service>
+        </sec:authentication-provider>
+    </sec:authentication-manager>
+    -->
+    
+    <!-- use bcrypt password -->
+    <sec:authentication-manager>
+        <sec:authentication-provider>
+        	<sec:password-encoder ref="passwordEncoder"/>
+            <sec:user-service>
+                <sec:user name="admin1" password="$2a$12$pYZ69INCupe8RlIx96tgt.Fvjb/YZoZHadFadcB7nt0vSe3jHWTqe" authorities="ROLE_ADMIN" />
+                <sec:user name="admin2" password="$2a$12$UikTqWh0cpA79096250vAOeEMHFNWohdaZFn4YyuXVgLBOCw7Hyb." authorities="ROLE_ADMIN" />
+                <sec:user name="user1" password="$2a$12$Xtk9Oh4utoObopLhgmzFIeRK5QK05U0mhu2cPhXBjRMlm.7r/Cb4m" authorities="ROLE_USER" />
+                <sec:user name="user2" password="$2a$12$Rvd/XqX5a3OBxi2kO1shFOZgbtkQo78Uql7/iId0Wqg8o59YGPFSq" authorities="ROLE_USER" />
+            </sec:user-service>
+        </sec:authentication-provider>
+    </sec:authentication-manager>
+</beans>

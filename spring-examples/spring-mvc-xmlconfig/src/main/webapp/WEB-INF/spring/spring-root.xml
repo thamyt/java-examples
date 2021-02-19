@@ -45,5 +45,5 @@
     
     <import resource="spring-context.xml"/>
     
-    <import resource="spring-security-basic.xml"/>
+    <import resource="spring-security-auth-formlogin.xml"/>
 </beans>

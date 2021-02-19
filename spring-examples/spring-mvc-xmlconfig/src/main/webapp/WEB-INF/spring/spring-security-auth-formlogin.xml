@@ -7,6 +7,9 @@
                            http://www.springframework.org/schema/security
                            http://www.springframework.org/schema/security/spring-security.xsd">
 
+	<!-- resources at path webapp/resources -->
+	<sec:http pattern="/resources/**" security="none" />
+
 	<!-- Option 1: Use auto-config, which implicitly include certain security features
 	               this option use spring internal login form -->
 <!-- 
@@ -15,48 +18,30 @@
         <sec:csrf disabled="true"/>
     </sec:http>
  -->
+
 	<!-- Option 2: same as option 1 without auto-config. explicitly specify the security features -->
-<!-- 
+<!-- 	
 	<sec:http>
         <sec:intercept-url pattern="/jsp/admin/**" access="hasRole('ROLE_USER')" />
         <sec:form-login />
 		<sec:anonymous />
-		<sec:http-basic />
 		<sec:logout />
 		<sec:remember-me />
         <sec:csrf disabled="true"/>
     </sec:http>
--->    
-    <!-- Option 3: use browser login form -->
-<!-- 
-    <sec:http>
-        <sec:intercept-url pattern="/jsp/admin/**" access="hasRole('ROLE_USER')" />
-		<sec:http-basic />
-        <sec:csrf disabled="true"/>
-    </sec:http>
- -->    
-    <!-- Option 4: use custom login form -->
+ -->
+ 
+    <!-- Option 3: use custom login form -->
     <sec:http>
         <sec:intercept-url pattern="/jsp/admin/**" access="hasAnyRole('ROLE_ADMIN')" />
         <sec:form-login login-page="/loginpage"
         				login-processing-url="/login"
         				authentication-failure-url="/loginpage?error" 
         				always-use-default-target="true"/>
-		<sec:http-basic />
 		<sec:logout logout-success-url="/" />
 		<sec:csrf disabled="true" />
     </sec:http>
+  
+    <import resource="spring-security-authprovider-userservice.xml"/>
     
- 
-
-    <sec:authentication-manager>
-        <sec:authentication-provider>
-            <sec:user-service>
-                <sec:user name="admin1" password="{noop}P@ssw0rd123" authorities="ROLE_ADMIN" />
-                <sec:user name="admin2" password="{noop}P@ssw0rd123" authorities="ROLE_ADMIN" />
-                <sec:user name="user1" password="{noop}P@ssw0rd123" authorities="ROLE_USER" />
-                <sec:user name="user2" password="{noop}P@ssw0rd123" authorities="ROLE_USER" />
-            </sec:user-service>
-        </sec:authentication-provider>
-    </sec:authentication-manager>
 </beans>
