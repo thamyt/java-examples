@@ -18,6 +18,7 @@
 		<spring.security.version>5.2.9.RELEASE</spring.security.version>
 		<jstl.version>1.2</jstl.version>
 		<thymeleaf.version>3.0.12.RELEASE</thymeleaf.version>
+		<thymeleaf.extras.version>3.0.4.RELEASE</thymeleaf.extras.version>
 		<freemarker.version>2.3.30</freemarker.version>
 	</properties>
 
@@ -111,6 +112,11 @@
                 <artifactId>thymeleaf-spring5</artifactId>
                 <version>${thymeleaf.version}</version>
             </dependency>
+            <dependency>
+        		<groupId>org.thymeleaf.extras</groupId>
+        		<artifactId>thymeleaf-extras-springsecurity5</artifactId>
+        		<version>${thymeleaf.extras.version}</version>
+    		</dependency>
             
             <!-- freemarker -->
             <dependency>

@@ -37,12 +37,14 @@
  -->    
     <!-- Option 4: use custom login form -->
     <sec:http>
-        <sec:intercept-url pattern="/jsp/admin/**" access="hasRole('ROLE_USER')" />
+        <sec:intercept-url pattern="/jsp/admin/**" access="hasAnyRole('ROLE_ADMIN')" />
         <sec:form-login login-page="/loginpage"
         				login-processing-url="/login"
-        				authentication-failure-url="/loginpage?error" />
+        				authentication-failure-url="/loginpage?error" 
+        				always-use-default-target="true"/>
 		<sec:http-basic />
-		<sec:csrf disabled="false" />
+		<sec:logout logout-success-url="/" />
+		<sec:csrf disabled="true" />
     </sec:http>
     
  
@@ -50,9 +52,10 @@
     <sec:authentication-manager>
         <sec:authentication-provider>
             <sec:user-service>
-                <sec:user name="test1" password="{noop}Password111" authorities="ROLE_USER" />
-                <sec:user name="test2" password="{noop}Password222" authorities="ROLE_USER" />
-                <sec:user name="test3" password="{noop}Password333" authorities="ROLE_USER" />
+                <sec:user name="admin1" password="{noop}P@ssw0rd123" authorities="ROLE_ADMIN" />
+                <sec:user name="admin2" password="{noop}P@ssw0rd123" authorities="ROLE_ADMIN" />
+                <sec:user name="user1" password="{noop}P@ssw0rd123" authorities="ROLE_USER" />
+                <sec:user name="user2" password="{noop}P@ssw0rd123" authorities="ROLE_USER" />
             </sec:user-service>
         </sec:authentication-provider>
     </sec:authentication-manager>

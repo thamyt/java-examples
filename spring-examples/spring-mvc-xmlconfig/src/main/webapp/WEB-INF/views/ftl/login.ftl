@@ -19,19 +19,17 @@
     </div>
     <form action="<@spring.url '/login'/>" method="post" style="max-width: 350px; margin: 0 auto;">
        	<!-- Need to explicitly added the CSRF token for Freemarker -->
-		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />	
-     
-     	<!--
-     		Freemarker cannot access the url parameter.
-     		The below 2 if statements will not work.
-     	-->
-     
-     	<#if (param.error)??>
-     		<p class="text-danger">${sessionScope['SPRING_SECURITY_LAST_EXCEPTION'].message}</p>
+       	<#if _csrf??>
+			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+		</#if>	
+     	
+     	<#if RequestParameters.error?? &&
+     	     Session.SPRING_SECURITY_LAST_EXCEPTION?? && 
+     	     Session.SPRING_SECURITY_LAST_EXCEPTION.message?has_content>
+    		<p class="text-danger">${Session.SPRING_SECURITY_LAST_EXCEPTION.message}</p>
      	</#if>
         
-         
-        <#if (param.logout)??>
+        <#if RequestParameters.logout??>
             <p class="text-warning">You have been logged out.</p>
         </#if>
          

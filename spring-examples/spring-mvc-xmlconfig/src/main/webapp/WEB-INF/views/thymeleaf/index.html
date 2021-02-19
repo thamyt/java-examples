@@ -1,10 +1,33 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <title th:text="${title}" />
+    
+    <script>
+        function formSubmit() {
+            document.getElementById("logoutForm").submit();
+        }
+    </script>
 </head>
 <body>
     <h1 th:text="${title}" />
+    
+    <div sec:authorize="isAuthenticated()">
+    	<div>
+    		Welcome <span sec:authentication="name" /> | <a href="javascript:formSubmit()">Logout</a>
+    	</div>
+    	
+    	<form th:action="@{/logout}" method="post" id="logoutForm">
+    		<!-- No need to explicitly added the CSRF token for thymeleaf. It will be added automatically -->
+		</form>	 
+	</div>
+	<div sec:authorize="!isAuthenticated()">
+		<div>
+    		<a th:href="@{/loginpage}">Login here</a>
+    	</div>
+	</div>
+    
    	<ul>
 	   	<li><a th:href="@{/jsp}">Demo (Jsp)</a></li>
 	   	<li><a th:href="@{/thymeleaf}">Demo (Thymeleaf)</a></li>

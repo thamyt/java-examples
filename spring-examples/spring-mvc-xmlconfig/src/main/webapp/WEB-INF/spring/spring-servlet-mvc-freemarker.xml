@@ -24,5 +24,12 @@
   
   		<!-- if you want to use the Spring FreeMarker macros, set this property to true -->
   		<property name="exposeSpringMacroHelpers" value="true"/>
+  		
+  		<!-- enable to allow access of session attributes in ftl -->
+  		<!--  
+  		<property name="exposeSessionAttributes" value="false"/>
+  		
+  		<property name="exposeRequestAttributes" value="false"/>
+  		-->
 	</bean>
 </beans>
