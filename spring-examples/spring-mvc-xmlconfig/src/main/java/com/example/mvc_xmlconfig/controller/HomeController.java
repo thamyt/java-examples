@@ -5,7 +5,8 @@ import java.util.Map;
 import javax.annotation.Resource;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.factory.PasswordEncoderFactories;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,11 +21,19 @@ public class HomeController extends BaseController {
 	@Autowired
 	private HelloBean helloBean;
 	
-	@Autowired
-	BCryptPasswordEncoder encoder;
+	/*
+	 * @Autowired
+	 * 
+	 * @Qualifier("passwordEncoder") private PasswordEncoder encoder2;
+	 */
+	private PasswordEncoder encoder;
 	
 	@Resource(name="countryList")
-	Map<String, String> ctrList;
+	private Map<String, String> ctrList;
+	
+	public HomeController() {
+		encoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
+	}
 
 	@RequestMapping(method = RequestMethod.GET)
 	public String home(Model model) {
@@ -32,6 +41,11 @@ public class HomeController extends BaseController {
 		
 		System.out.println(encoder.encode("P@ssw0rd123"));
 		System.out.println(encoder.encode("P@ssw0rd123"));
+		System.out.println("-------------------------------");
+		/*
+		 * System.out.println(encoder2.encode("P@ssw0rd123"));
+		 * System.out.println(encoder2.encode("P@ssw0rd123"));
+		 */
 		
 		model.addAttribute("helloMsg", helloBean);
 		return "index.html";

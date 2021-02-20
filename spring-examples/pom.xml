@@ -20,6 +20,7 @@
 		<thymeleaf.version>3.0.12.RELEASE</thymeleaf.version>
 		<thymeleaf.extras.version>3.0.4.RELEASE</thymeleaf.extras.version>
 		<freemarker.version>2.3.30</freemarker.version>
+		<mysql.version>8.0.21</mysql.version>
 	</properties>
 
 	<dependencyManagement>
@@ -123,6 +124,13 @@
     			<groupId>org.freemarker</groupId>
     			<artifactId>freemarker</artifactId>
     			<version>${freemarker.version}</version>
+			</dependency>
+            
+            <!-- mysql connector -->
+            <dependency>
+    			<groupId>mysql</groupId>
+    			<artifactId>mysql-connector-java</artifactId>
+    			<version>${mysql.version}</version>
 			</dependency>
             
 		</dependencies>

@@ -42,6 +42,10 @@
 		<sec:csrf disabled="true" />
     </sec:http>
   
+  	<!--  
     <import resource="spring-security-authprovider-userservice.xml"/>
+    -->
+    
+    <import resource="spring-security-authprovider-jdbc.xml"/>
     
 </beans>

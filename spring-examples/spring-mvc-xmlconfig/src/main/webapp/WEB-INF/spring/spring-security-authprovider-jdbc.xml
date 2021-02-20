@@ -1,25 +1,70 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"   
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:jdbc="http://www.springframework.org/schema/jdbc"
        xmlns:sec="http://www.springframework.org/schema/security"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
                            http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/jdbc 
+                           http://www.springframework.org/schema/jdbc/spring-jdbc.xsd
                            http://www.springframework.org/schema/security
                            http://www.springframework.org/schema/security/spring-security.xsd">
 
-	<!-- use bcrypt password -->
-	<bean id="passwordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder">
-        <!--Optional tag, setting the strength to 12 -->
+	<!-- use bcrypt password -->  
+	<!--
+ 	<bean id="passwordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder">
         <constructor-arg name="strength" value="12"/>
+    </bean> 
+    -->
+	
+    <!-- use sha256 password --> 
+    <!--  
+    <bean id="passwordEncoder" class="org.springframework.security.crypto.password.MessageDigestPasswordEncoder">
+        <constructor-arg name="algorithm" value="SHA-256"/>
     </bean>
+    -->
+    
+    <!-- DelegatingPasswordEncoder is the default PasswordEncoder not Spring 5 if it is not explicitly defined -->
+    
+    <jdbc:initialize-database data-source="dataSource"
+        					  enabled="true">
+        <jdbc:script location="classpath:db-schema.sql" />
+        <jdbc:script location="classpath:db-data.sql" />
+    </jdbc:initialize-database>
+    
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="com.mysql.cj.jdbc.Driver" />
+		<property name="url" value="jdbc:mysql://localhost:3306/springsecurity" />
+		<property name="username" value="root" />
+		<property name="password" value="Passw0rd123" />
+	</bean>
  
     <bean id="userDetailsManager" class="org.springframework.security.provisioning.JdbcUserDetailsManager">
         <property name="dataSource" ref="dataSource"/>
+        <property name="enableGroups" value="true"/>
+        <property name="enableAuthorities" value="false"/>
+        
+        <!-- For Mysql, need to override the default query in spring to surround the table name with `<tablename>`
+             This is to prevent SQL syntax error because some tables name (e.g. groups) is special keywords to mysql.
+         -->
+        <property name="usersByUsernameQuery">
+        	<value>select username,password,enabled from `users` where username = ?
+        	</value>
+        </property>
+        <property name="groupAuthoritiesByUsernameQuery">
+			<value>select g.id, g.group_name, ga.authority 
+				   from `groups` g, `group_members` gm, `group_authorities` ga 
+				   where gm.username = ? and g.id = ga.group_id and g.id = gm.group_id
+			</value>
+		</property>
     </bean>
         
     <sec:authentication-manager>
         <sec:authentication-provider user-service-ref="userDetailsManager">
-        	<sec:password-encoder ref="passwordEncoder"/>            
+          	<!-- Comment the password encoder tag to use default DelegatingPasswordEncoder -->
+          	<!--  
+        	<sec:password-encoder ref="passwordEncoder"/>  
+        	-->
         </sec:authentication-provider>
     </sec:authentication-manager>
 </beans>
