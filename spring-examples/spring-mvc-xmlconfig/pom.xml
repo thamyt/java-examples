@@ -59,6 +59,10 @@
 		    <groupId>org.springframework.security</groupId>
 		    <artifactId>spring-security-taglibs</artifactId>
 		</dependency>
+		<dependency>
+		    <groupId>org.springframework.security</groupId>
+		    <artifactId>spring-security-ldap</artifactId>
+		</dependency>
 
 		<!-- require for freemarker to work -->
 		<dependency>

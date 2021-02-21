@@ -14,7 +14,12 @@
     <h1><c:out value="${title}"/> (JSP) - Admin Page</h1>
     
     <sec:authorize access="isAuthenticated()">
-    <h2>Hi <sec:authentication property="name"/></h2>
+    	<sec:authentication property="principal.cn" var="commonName"/>
+    	<h2>Hi 
+	    	<c:forEach items="${commonName}" var="cn">${cn}</c:forEach>
+	    	<sec:authentication property="principal.sn"/>
+    		(<sec:authentication property="principal.mobile"/>)
+    	</h2>
 	</sec:authorize>
    	
    	<h3>This page to the spring security feature.</h3>

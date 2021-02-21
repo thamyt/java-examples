@@ -1,32 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"   
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xmlns:jdbc="http://www.springframework.org/schema/jdbc"
        xmlns:sec="http://www.springframework.org/schema/security"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
                            http://www.springframework.org/schema/beans/spring-beans.xsd
-                           http://www.springframework.org/schema/jdbc 
-                           http://www.springframework.org/schema/jdbc/spring-jdbc.xsd
                            http://www.springframework.org/schema/security
                            http://www.springframework.org/schema/security/spring-security.xsd">
 
  	<sec:ldap-server id="ldapServer" 
- 					 url="ldap://localhost"
+ 					 url="ldap://localhost:10389/dc=test,dc=com"
  					 port="10389"
- 					 manager-dn="uid=admin,ou=system"
+ 					 manager-dn="uid=sysadmin,ou=system,dc=test,dc=com"
  					 manager-password="P@ssw0rd123" /> 
  
-        
     <sec:authentication-manager>
         <sec:ldap-authentication-provider 
         			server-ref="ldapServer" 
-        			user-dn-pattern="uid={0},ou=users,ou=system"
+        			user-dn-pattern="uid={0},ou=people"
         			user-search-filter="(uid={0})"
-        			user-search-base="ou=users,ou=system"
-        			group-search-filter=""
-        			group-search-base=""
-        			group-role-attribute="">
-          	
+        			user-search-base="ou=people"
+        			user-details-class="inetOrgPerson"
+        			group-search-filter="(uniqueMember={0})"
+        			group-search-base="ou=groups"
+        			group-role-attribute="cn">
         </sec:ldap-authentication-provider>
     </sec:authentication-manager>
 </beans>
