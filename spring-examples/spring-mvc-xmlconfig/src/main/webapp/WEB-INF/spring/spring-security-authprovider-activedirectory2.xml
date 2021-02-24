@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"   
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:sec="http://www.springframework.org/schema/security"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                           http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/security
+                           http://www.springframework.org/schema/security/spring-security.xsd">
+
+ 	<sec:ldap-server id="ldapServer" 
+ 					 url="ldap://192.168.0.12:389/dc=example,dc=com"
+ 					 port="389"
+ 					 manager-dn="cn=adsadmin,cn=Users,dc=example,dc=com"
+ 					 manager-password="P@ssw0rd123" /> 
+ 
+
+ 	<!-- This option no need to include domain in the username (e.g. user1) -->
+    <sec:authentication-manager>
+        <sec:ldap-authentication-provider 
+        			server-ref="ldapServer" 
+        			user-dn-pattern="sAMAccountName={0},cn=Users"
+        			user-search-filter="(&amp;(objectClass=inetOrgPerson)(sAMAccountName={0}))"
+        			user-search-base="cn=Users"
+        			user-details-class="inetOrgPerson"
+        			group-search-filter="(&amp;(objectClass=group)(member={0}))"
+        			group-search-base="cn=Users"
+        			group-role-attribute="cn"
+        			role-prefix="none">
+        </sec:ldap-authentication-provider>
+    </sec:authentication-manager>
+    
+    <!-- This option need to include domain in the username (e.g. user1@example.com) -->
+    <!--  
+    <sec:authentication-manager>
+        <sec:ldap-authentication-provider 
+        			server-ref="ldapServer" 
+        			user-dn-pattern="userPrincipalName={0},cn=Users"
+        			user-search-filter="(&amp;(objectClass=inetOrgPerson)(userPrincipalName={0}))"
+        			user-search-base="cn=Users"
+        			user-details-class="inetOrgPerson"
+        			group-search-filter="(&amp;(objectClass=group)(member={0}))"
+        			group-search-base="cn=Users"
+        			group-role-attribute="cn">
+        </sec:ldap-authentication-provider>
+    </sec:authentication-manager>
+   	-->
+</beans>

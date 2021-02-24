@@ -16,18 +16,20 @@
         <constructor-arg name="strength" value="12"/>
     </bean> 
     -->
-	
-    <!-- use sha256 password --> 
+
+    <!-- use SHA-256 password -->  
     <!--  
     <bean id="passwordEncoder" class="org.springframework.security.crypto.password.MessageDigestPasswordEncoder">
         <constructor-arg name="algorithm" value="SHA-256"/>
     </bean>
     -->
-    <!-- 
-    <bean id="passwordEncoder" class="org.springframework.security.crypto.password.StandardPasswordEncoder" />
-     -->
     
-    <!-- DelegatingPasswordEncoder is the default PasswordEncoder not Spring 5 if it is not explicitly defined -->
+    <!-- use sha256 password --> 
+    <!--
+    <bean id="passwordEncoder" class="org.springframework.security.crypto.password.StandardPasswordEncoder" />
+	-->
+    
+    <!-- DelegatingPasswordEncoder is the default PasswordEncoder for Spring 5 if it is not explicitly defined -->
     
     <jdbc:initialize-database data-source="dataSource"
         					  enabled="true">

@@ -41,7 +41,7 @@ public class HomeController extends BaseController {
 
 		System.out.println(encoder.encode("P@ssw0rd123"));
 		System.out.println(encoder.encode("P@ssw0rd123"));
-		System.out.println("-------------------------------");
+//		System.out.println("-------------------------------");
 //		System.out.println(encoder2.encode("P@ssw0rd123"));
 //		System.out.println(encoder2.encode("P@ssw0rd123"));
 		

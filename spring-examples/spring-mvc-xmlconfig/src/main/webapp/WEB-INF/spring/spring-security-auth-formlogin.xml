@@ -33,6 +33,7 @@
  
     <!-- Option 3: use custom login form -->
     <sec:http>
+    	<sec:intercept-url pattern="/loginpage" access="permitAll" />
         <sec:intercept-url pattern="/jsp/admin/**" access="hasAnyRole('ROLE_ADMIN')" />
         <sec:form-login login-page="/loginpage"
         				login-processing-url="/login"
@@ -45,8 +46,11 @@
   	<!--  
     <import resource="spring-security-authprovider-userservice.xml"/>
     <import resource="spring-security-authprovider-jdbc.xml"/>
+    <import resource="spring-security-authprovider-ldap.xml"/>
+    <import resource="spring-security-authprovider-activedirectory.xml"/>
     -->
     
-    <import resource="spring-security-authprovider-ldap.xml"/>
+    <import resource="spring-security-authprovider-activedirectory2.xml"/>
+    
     
 </beans>

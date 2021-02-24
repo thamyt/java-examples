@@ -4,6 +4,10 @@ import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.ldap.userdetails.InetOrgPerson;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,6 +21,31 @@ public class JspDemoController extends BaseController {
 	
 	@RequestMapping(method = RequestMethod.GET)
 	public String home(Model model) {
+		// get the authentication information
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		//UserDetails userDetails = (UserDetails)auth.getPrincipal();
+		InetOrgPerson userDetails = (InetOrgPerson)auth.getPrincipal();
+		
+		System.out.println("username = " + userDetails.getUsername());
+		System.out.println("password = " + userDetails.getPassword());
+		System.out.println("given name = " + userDetails.getGivenName());
+		System.out.println("Initials = " + userDetails.getInitials());
+		System.out.println("Display name = " + userDetails.getDisplayName());
+		System.out.println("Sn = " + userDetails.getSn());
+		System.out.println("Cn = " + String.join(" ", userDetails.getCn()));
+		System.out.println("Dn = " + userDetails.getDn());
+		System.out.println("Description = " + userDetails.getDescription());
+		System.out.println("O = " + userDetails.getO());
+		System.out.println("Mail = " + userDetails.getMail());
+		System.out.println("Uid = " + userDetails.getUid());
+		
+		List<GrantedAuthority> authorities = (List<GrantedAuthority>)userDetails.getAuthorities();
+		if(  authorities != null ) {
+			for(GrantedAuthority ga : authorities) {
+				System.out.println("authority = " + ga.getAuthority());
+			}
+		}
+		
 		return "demo.jsp";
 	}
 	
