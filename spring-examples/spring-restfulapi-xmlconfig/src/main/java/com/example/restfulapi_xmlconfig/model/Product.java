@@ -1,40 +1,73 @@
 package com.example.restfulapi_xmlconfig.model;
 
-public class Product {
+import java.io.Serializable;
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.NamedQuery;
+
+
+/**
+ * The persistent class for the product database table.
+ * 
+ */
+@Entity
+@NamedQuery(name="Product.findAll", query="SELECT p FROM Product p")
+public class Product implements Serializable {
+	private static final long serialVersionUID = 1L;
+
+	@Id
 	private int id;
-	private String name;
-	private int qty;
+
 	private String description;
-	private String urlImage;
-	
-	public int getId() {
-		return id;
+
+	private String imageurl;
+
+	private String name;
+
+	private int qty;
+
+	public Product() {
 	}
+
+	public int getId() {
+		return this.id;
+	}
+
 	public void setId(int id) {
 		this.id = id;
 	}
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
-	public int getQty() {
-		return qty;
-	}
-	public void setQty(int qty) {
-		this.qty = qty;
-	}
+
 	public String getDescription() {
-		return description;
+		return this.description;
 	}
+
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public String getUrlImage() {
-		return urlImage;
+
+	public String getImageurl() {
+		return this.imageurl;
 	}
-	public void setUrlImage(String urlImage) {
-		this.urlImage = urlImage;
+
+	public void setImageurl(String imageurl) {
+		this.imageurl = imageurl;
 	}
+
+	public String getName() {
+		return this.name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public int getQty() {
+		return this.qty;
+	}
+
+	public void setQty(int qty) {
+		this.qty = qty;
+	}
+
 }

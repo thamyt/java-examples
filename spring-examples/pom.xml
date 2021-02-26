@@ -15,7 +15,9 @@
 		<servlet-api.version>4.0.1</servlet-api.version>
 		<jsp-api.version>2.1</jsp-api.version>
 		<spring.version>5.2.12.RELEASE</spring.version>
+		<spring.data.version>2.3.7.RELEASE</spring.data.version>
 		<spring.security.version>5.2.9.RELEASE</spring.security.version>
+		<hibernate.version>5.2.17.Final</hibernate.version>
 		<jstl.version>1.2</jstl.version>
 		<thymeleaf.version>3.0.12.RELEASE</thymeleaf.version>
 		<thymeleaf.extras.version>3.0.4.RELEASE</thymeleaf.extras.version>
@@ -74,6 +76,18 @@
     			<version>${spring.version}</version>
 			</dependency>
 			
+			<!-- Spring-Data-JPA -->
+			<dependency>
+				<groupId>org.springframework.data</groupId>
+				<artifactId>spring-data-jpa</artifactId>
+				<version>${spring.data.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework.data</groupId>
+				<artifactId>spring-data-commons</artifactId>
+				<version>${spring.data.version}</version>
+			</dependency>
+			
 			<!-- Spring Security -->
 			<dependency>
                 <groupId>org.springframework.security</groupId>
@@ -100,6 +114,19 @@
 			    <artifactId>spring-security-ldap</artifactId>
 			    <version>${spring.security.version}</version>
 			</dependency>
+			
+			<!-- JPA Implementation (Hibernate) -->
+			<dependency>
+				<groupId>org.hibernate</groupId>
+				<artifactId>hibernate-core</artifactId>
+				<version>${hibernate.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.hibernate</groupId>
+				<artifactId>hibernate-entitymanager</artifactId>
+				<version>${hibernate.version}</version>
+				<scope>runtime</scope>
+			</dependency>			
 			
 			<!-- JSTL -->
 			<dependency>
@@ -172,6 +199,6 @@
     	<module>spring-mvc-javaconfig</module>
     	<module>spring-mvc-multiservlets-xmlconfig</module>
     	<module>spring-mvc-multiservlets-javaconfig</module>
-    <module>spring-restfulapi-xmlconfig</module>
-  </modules>
+    	<module>spring-restfulapi-xmlconfig</module>
+  	</modules>
 </project>

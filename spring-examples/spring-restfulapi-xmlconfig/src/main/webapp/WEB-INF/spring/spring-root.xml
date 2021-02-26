@@ -7,7 +7,7 @@
                            http://www.springframework.org/schema/context
                            http://www.springframework.org/schema/context/spring-context.xsd">
 	
-    <context:component-scan base-package="com.example.mvc_xmlconfig.util" />
+    <context:component-scan base-package="com.example.restfulapi_xmlconfig.service" />
      
     <!-- 
     <context:property-placeholder location="classpath:application.properties" ignore-unresolvable="true"/>
@@ -32,6 +32,6 @@
 	</bean>
 
 	    
-    <import resource="spring-context.xml"/>
+    <import resource="spring-db.xml"/>
     
 </beans>
